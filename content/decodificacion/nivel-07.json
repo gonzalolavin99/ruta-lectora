@@ -2,6 +2,7 @@
   "objetivo": "decodificacion",
   "nivel": 7,
   "titulo": "Palabras con sílabas trabadas (CCV)",
+  "nombreCorto": "Trabadas",
   "revisado": false,
   "estimulos": [
     {

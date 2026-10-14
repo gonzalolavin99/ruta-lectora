@@ -2,6 +2,7 @@
   "objetivo": "decodificacion",
   "nivel": 3,
   "titulo": "Palabras CV-CV frecuentes",
+  "nombreCorto": "CV-CV",
   "revisado": false,
   "estimulos": [
     {

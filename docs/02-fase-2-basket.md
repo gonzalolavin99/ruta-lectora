@@ -1,6 +1,24 @@
-# Fase 2: motor base, perfil del niño y Basket
+# Fase 2: motor base y Basket
 
-> Estado: **lista para que Fran la pruebe y apruebe** (con sus respuestas del 13 oct ya incorporadas).
+> Estado: **lista para que Fran la pruebe y apruebe** (con sus pedidos del 13 y 14 oct ya incorporados).
+
+## Cómo funciona una sesión (14 oct 2026)
+
+**Ya no hay perfiles de niños.** La fonoaudióloga elige todo en el momento:
+
+1. **¿Qué curso?** De 1° a 5° básico. El curso define cómo se ve: 1°–2° amarillo con el Kiltro, 3°–4° menta y celeste, 5° lila con lima.
+2. **¿Qué vamos a leer?** Hay tres columnas:
+   - **Sílabas:** con m, p, l, s, t, n, o todas las sílabas
+   - **Palabras:** CV-CV, con CVC, trabadas, diptongos o largas
+   - **Pseudopalabras:** CV-CV, con CVC, trabadas o diptongos
+3. **Lee la palabra:** aparecen una por una, en grande, las 12 palabras de la ronda. La mitad cumple la consigna del juego y la otra mitad no. Se avanza con "Siguiente" (o tocando la palabra, o con la flecha derecha o la barra espaciadora en el Mac). El botón **ca·sa** muestra la palabra separada en sílabas de dos colores, como apoyo.
+4. **¡A jugar!** Basket es el premio, y en él caen **solo las palabras que se leyeron**.
+5. Al terminar la ronda: **Jugar otra vez** (mismas palabras), **Palabras nuevas** (vuelve a la lectura con otras 12) o **Salir**.
+
+**Qué se guarda en el aparato:** solo la letra elegida, el sonido encendido o apagado y la última velocidad usada en cada curso. Ya no se guardan respuestas ni historial por niño.
+
+> **Consecuencia:** sin perfiles, las fases de métricas, informes PDF y tarea para la casa (5 y 6 del plan original) hay que redefinirlas con Fran. Si más adelante quiere seguimiento por niño, se pueden volver a agregar perfiles.
+
 
 ---
 
@@ -41,7 +59,7 @@
 
 ### Las consignas
 
-Se arman solas a partir de la lista de palabras del nivel del niño:
+Se arman solas a partir de la lista que eligió Fran:
 - tienen la letra ___ (es la más frecuente)
 - empiezan con la letra ___
 - empiezan con la sílaba ___
@@ -55,7 +73,7 @@ El texto de cada consigna se puede editar en `content/basket/consignas.json`.
 
 - El único sonido es el **"swish" al encestar**. No hay voz ni sonido de error.
 - El sonido **se genera con código** en el momento; no es un archivo grabado. Por eso no tiene derechos de autor y funciona igual en el Mac, el iPad y el iPhone, incluso sin internet.
-- Se puede **apagar por niño** en la zona de adulto.
+- Se puede apagar en **⚙️ Ajustes**, en la pantalla de cursos.
 - En iPad y iPhone no suena si el aparato está en modo silencio.
 
 ---
@@ -68,33 +86,27 @@ El texto de cada consigna se puede editar en `content/basket/consignas.json`.
   - **60–79 %:** se mantiene.
   - **Menos de 60 %:** bloque de refuerzo, todo un 25 % más lento. Si en el refuerzo vuelve a bajar de 60 %, baja una velocidad.
 - La velocidad cambia **durante la ronda**.
-- **Las palabras no cambian solas.** El nivel de lectura (niveles 1 a 11) lo fija Fran en el perfil.
-- Desde la zona de adulto se puede **fijar la velocidad** y cambiar el tamaño del bloque.
+- **Las palabras no cambian solas.** Las elige Fran al entrar al curso.
+- La última velocidad que se usó en cada curso queda guardada para la próxima vez.
 - **Estrellas rayo:** cada 5 encestadas seguidas sin error se gana una. Es solo un bonus.
-- Con esta mecánica ya no se mide el tiempo de reacción, porque el ritmo lo marca la caída. Se guarda si atrapó o dejó pasar cada pelota.
 
 ---
 
 ## Ajustes para ahorrar tiempo en sesión (pedido de Fran)
 
-- **Velocidad dentro del juego:** arriba a la derecha está el control **− Velocidad +**. Funciona antes de apretar ¡Vamos! y durante el juego, y el cambio se nota al tiro, también en las pelotas que ya vienen cayendo. Queda guardado en el perfil. Al cambiarla a mano, el bloque de 10 parte de cero para que la regla 80/60 mida la velocidad nueva.
-- **Sin PIN:** el botón "⚙️ Perfiles" entra directo. En "¿Quién juega?" hay una tarjeta **+ Nuevo jugador** para crear un perfil en segundos.
+- **Velocidad dentro del juego:** arriba a la derecha está el control **− Velocidad +**. Funciona antes de apretar ¡Vamos! y durante el juego, y el cambio se nota al tiro, también en las pelotas que ya vienen cayendo. Queda guardado para ese curso. Al cambiarla a mano, el bloque de 10 parte de cero para que la regla 80/60 mida la velocidad nueva.
+- **Sin PIN ni perfiles:** se entra directo eligiendo curso y contenido.
 
 ## Estilo visual, versión 2
 
-- Fondos claros con puntitos, nunca oscuros. 2°–3° amarillo, 4°–5° menta y celeste, 6°–7° lila con lima.
+- Fondos claros con puntitos, nunca oscuros. 1°–2° amarillo, 3°–4° menta y celeste, 5° lila con lima.
 - Bordes de tinta y sombras desplazadas (estilo sticker), botones redondos y tarjetas levemente giradas.
 - Letra **Fredoka** (redondeada) solo para títulos y botones. **Las palabras que el niño lee siguen en Andika** (u OpenDyslexic), por legibilidad.
 - Se mantienen las reglas clínicas: sin blanco puro, alto contraste y botones grandes.
 
 ## Qué más hay en esta fase
 
-- **Elegir jugador:** cada niño toca su alias.
-- **Inicio del niño:** con el estilo de su tramo. El Kiltro aparece grande en 2°–3°, chico en 4°–5° y no aparece en 6°–7°. Turbo y Crash se ven como "Pronto".
-- **Perfiles** (sin PIN):
-  - crear, editar y eliminar perfiles: alias, curso, nivel de lectura, velocidad, fijar velocidad, tamaño del bloque y letra (Andika u OpenDyslexic)
-  - ver las últimas 15 rondas de cada niño: consigna, % de acierto, encestadas y cambio de velocidad
-- **Se guarda cada respuesta** con la palabra, la consigna, si era correcta y el tiempo de reacción. Esos datos son la base de las métricas e informes de la Fase 6.
+- **⚙️ Ajustes:** la letra de las palabras (Andika u OpenDyslexic) y el sonido al encestar.
 - **PWA:** se instala y funciona sin internet. En el iPad, si se pone vertical, aparece "Gira el iPad para jugar".
 
 ### Contenido nuevo (todo `"revisado": false`)
@@ -132,10 +144,10 @@ Las listas están en `content/decodificacion/nivel-01.json` a `nivel-11.json`. M
 - Para **instalarla como app** hay que publicarla en Vercel. Después, en Safari: Compartir → Agregar a inicio.
 
 **Recorrido sugerido:**
-1. En "¿Quién juega?" tocar **+ Nuevo jugador** y crear un perfil **inventado** (por ejemplo "PRUEBA", 3°, nivel de lectura 3).
-2. Volver, elegir el perfil y jugar Basket.
-3. Crear otro perfil de 5° y uno de 7° para ver los tres estilos.
-4. Durante el juego, probar el control **− Velocidad +**.
-5. En "⚙️ Perfiles" revisar el historial de rondas.
+1. Tocar **1° básico** → **Pseudopalabras → CV-CV**.
+2. Leer las 12 palabras (probar el botón **ca·sa**) y tocar **¡A jugar!**
+3. Durante el juego, probar el control **− Velocidad +**.
+4. Al terminar, probar **Palabras nuevas**.
+5. Entrar a 3° y a 5° para ver los otros estilos.
 
-**Qué mirar:** ¿se leen bien las palabras? ¿Es cómodo arrastrar el aro en el iPad? ¿La velocidad 1 es lo bastante lenta para un niño que recién empieza?
+**Qué mirar:** ¿12 palabras es buena cantidad para leer antes de jugar? ¿Se leen bien? ¿Es cómodo arrastrar el aro en el iPad? ¿La velocidad 1 es lo bastante lenta para un niño que recién empieza?

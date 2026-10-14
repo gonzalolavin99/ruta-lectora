@@ -127,3 +127,24 @@ export function armarCola(
   }
   return cola;
 }
+
+function barajar<T>(lista: T[], azar: () => number): T[] {
+  const copia = [...lista];
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(azar() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+/**
+ * Palabras de la ronda: mitad cumplen la consigna y mitad no, sin repetir.
+ * Son las que se presentan primero para leer y luego caen en el juego.
+ */
+export function elegirPalabras(estimulos: Estimulo[], regla: Regla, cantidad = 12, azar = Math.random): Estimulo[] {
+  const objetivos = barajar(estimulos.filter((e) => clasificar(e, regla) === true), azar);
+  const distractores = barajar(estimulos.filter((e) => clasificar(e, regla) === false), azar);
+  const mitad = Math.ceil(cantidad / 2);
+  const elegidos = [...objetivos.slice(0, mitad), ...distractores.slice(0, cantidad - Math.min(mitad, objetivos.length))];
+  return barajar(elegidos.slice(0, cantidad), azar);
+}

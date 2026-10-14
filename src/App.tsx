@@ -1,50 +1,51 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useState } from 'react';
-import { db } from './data/db';
-import { BasketJuego } from './games/basket/BasketJuego';
-import { ZonaAdulto } from './panel/ZonaAdulto';
-import { Inicio } from './profile/Inicio';
-import { SelectorPerfil } from './profile/SelectorPerfil';
+import { leerPreferencias, PREFERENCIAS_INICIALES } from './data/db';
+import { Ajustes } from './panel/Ajustes';
+import { SelectorContenido } from './sesion/SelectorContenido';
+import { SelectorCurso } from './sesion/SelectorCurso';
+import { Sesion } from './sesion/Sesion';
 import { TEMAS, tramoDeCurso, variablesCss } from './ui/tema';
 
-type Pantalla = { tipo: 'perfiles' } | { tipo: 'inicio'; perfilId: string } | { tipo: 'basket'; perfilId: string } | { tipo: 'adulto'; nuevo?: boolean };
+type Pantalla = { tipo: 'cursos' } | { tipo: 'contenidos'; curso: number } | { tipo: 'sesion'; curso: number; nivel: number };
 
 export function App() {
-  const [pantalla, setPantalla] = useState<Pantalla>({ tipo: 'perfiles' });
-  const perfilId = 'perfilId' in pantalla ? pantalla.perfilId : undefined;
-  const perfil = useLiveQuery(() => (perfilId ? db.perfiles.get(perfilId) : undefined), [perfilId]);
+  const [pantalla, setPantalla] = useState<Pantalla>({ tipo: 'cursos' });
+  const [ajustesAbiertos, setAjustesAbiertos] = useState(false);
+  const preferencias = useLiveQuery(leerPreferencias, []) ?? PREFERENCIAS_INICIALES;
 
-  if (pantalla.tipo === 'perfiles') {
-    return (
-      <SelectorPerfil
-        alElegir={(id) => setPantalla({ tipo: 'inicio', perfilId: id })}
-        alAdulto={() => setPantalla({ tipo: 'adulto' })}
-        alNuevo={() => setPantalla({ tipo: 'adulto', nuevo: true })}
-      />
+  let contenido;
+  if (pantalla.tipo === 'cursos') {
+    contenido = <SelectorCurso alElegir={(curso) => setPantalla({ tipo: 'contenidos', curso })} alAjustes={() => setAjustesAbiertos(true)} />;
+  } else {
+    const tema = TEMAS[tramoDeCurso(pantalla.curso)];
+    contenido = (
+      <div className={`tramo tramo-${tema.tramo} fuente-${preferencias.fuente}`} style={variablesCss(tema) as React.CSSProperties}>
+        {pantalla.tipo === 'contenidos' && (
+          <SelectorContenido
+            curso={pantalla.curso}
+            tema={tema}
+            alElegir={(nivel) => setPantalla({ tipo: 'sesion', curso: pantalla.curso, nivel })}
+            alVolver={() => setPantalla({ tipo: 'cursos' })}
+          />
+        )}
+        {pantalla.tipo === 'sesion' && (
+          <Sesion
+            curso={pantalla.curso}
+            nivel={pantalla.nivel}
+            tema={tema}
+            preferencias={preferencias}
+            alSalir={() => setPantalla({ tipo: 'contenidos', curso: pantalla.curso })}
+          />
+        )}
+      </div>
     );
   }
-  if (pantalla.tipo === 'adulto') {
-    return <ZonaAdulto nuevo={pantalla.nuevo} alSalir={() => setPantalla({ tipo: 'perfiles' })} />;
-  }
-  if (!perfil) return null; // cargando
 
-  const tema = TEMAS[tramoDeCurso(perfil.curso)];
   return (
-    <div
-      className={`tramo tramo-${tema.tramo} fuente-${perfil.fuente}`}
-      style={variablesCss(tema) as React.CSSProperties}
-    >
-      {pantalla.tipo === 'inicio' && (
-        <Inicio
-          perfil={perfil}
-          tema={tema}
-          alJugar={() => setPantalla({ tipo: 'basket', perfilId: perfil.id })}
-          alCambiarJugador={() => setPantalla({ tipo: 'perfiles' })}
-        />
-      )}
-      {pantalla.tipo === 'basket' && (
-        <BasketJuego perfil={perfil} tema={tema} alSalir={() => setPantalla({ tipo: 'inicio', perfilId: perfil.id })} />
-      )}
-    </div>
+    <>
+      {contenido}
+      {ajustesAbiertos && <Ajustes preferencias={preferencias} alCerrar={() => setAjustesAbiertos(false)} />}
+    </>
   );
 }

@@ -116,51 +116,74 @@ button:disabled { opacity: .4; cursor: default; }
 }
 .tarjeta h2 { margin: 0; font-size: 40px; }
 
-/* ---------- selector de perfil ---------- */
+/* ---------- cursos ---------- */
 
-.grilla-perfiles { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; max-width: 1000px; }
-.tarjeta-perfil {
-  min-width: 210px; min-height: 150px; padding: 20px 28px;
-  border: var(--borde); border-radius: 28px;
-  background: var(--primary); color: var(--ink);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  box-shadow: var(--sombra);
-  transition: transform .08s, box-shadow .08s;
+.grilla-cursos { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.tarjeta-curso {
+  width: 170px; height: 190px;
+  border: var(--borde); border-radius: 32px; color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: var(--sombra); transition: transform .08s, box-shadow .08s;
 }
-.tarjeta-perfil:active { transform: translate(5px, 6px) !important; box-shadow: none; }
-.tarjeta-nuevo { background: var(--surface); border-style: dashed; }
-.perfil-alias { font-family: var(--fuente-titulo); font-size: 42px; font-weight: 700; line-height: 1.1; }
-.perfil-curso { font-size: 18px; font-weight: 700; }
+.tarjeta-curso:active { transform: translate(5px, 6px) !important; box-shadow: none; }
+.curso-numero { font-family: var(--fuente-titulo); font-size: 88px; font-weight: 700; line-height: 1; }
+.curso-texto { font-family: var(--fuente-titulo); font-size: 24px; font-weight: 600; }
 
-/* ---------- inicio del niño ---------- */
+/* ---------- qué vamos a leer ---------- */
 
-.saludo { display: flex; align-items: center; gap: 16px; }
-.saludo-nombre { font-family: var(--fuente-titulo); font-size: 38px; font-weight: 700; line-height: 1.1; }
-.monedas {
-  display: inline-block; margin-top: 4px; padding: 2px 14px;
-  border: var(--borde); border-radius: 999px; background: var(--surface);
-  font-size: 20px; font-weight: 700; box-shadow: var(--sombra-chica);
+.saludo { display: flex; align-items: center; gap: 12px; }
+.titulo-seccion { font-family: var(--fuente-titulo); font-size: 36px; font-weight: 700; margin: 0; text-align: center; }
+.contenidos { flex: 1; display: flex; flex-direction: column; gap: 24px; max-width: 1100px; width: 100%; margin: 0 auto; }
+.grupos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+.grupo {
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--surface); border: var(--borde); border-radius: calc(var(--radio) + 8px);
+  padding: 18px; box-shadow: var(--sombra);
 }
-.juegos { flex: 1; display: flex; gap: 32px; align-items: center; justify-content: center; flex-wrap: wrap; }
-.tarjeta-juego {
-  position: relative;
-  width: 250px; height: 250px;
-  border: var(--borde); border-radius: calc(var(--radio) + 12px);
-  background: var(--surface); color: var(--ink);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-  box-shadow: var(--sombra);
+.grupo h3 { margin: 0 0 4px; font-family: var(--fuente-titulo); font-size: 28px; text-align: center; }
+.tarjeta-contenido {
+  min-height: 76px; padding: 10px 16px; text-align: left;
+  display: flex; flex-direction: column; gap: 2px;
+  border: var(--borde); border-radius: var(--radio); background: var(--primary); color: var(--ink);
+  box-shadow: var(--sombra-chica); transition: transform .08s, box-shadow .08s;
 }
-button.tarjeta-juego { background: var(--primary); rotate: -2deg; transition: transform .08s, box-shadow .08s; }
-button.tarjeta-juego:active { transform: translate(5px, 6px); box-shadow: none; }
-.tarjeta-juego-icono { font-size: 96px; line-height: 1; }
-.tarjeta-juego-nombre { font-family: var(--fuente-titulo); font-size: 38px; font-weight: 700; }
-.tarjeta-juego.bloqueada { opacity: .55; box-shadow: none; border-style: dashed; }
-.pronto {
-  position: absolute; top: -14px; right: -10px; rotate: 6deg;
-  font-family: var(--fuente-titulo); font-size: 18px; font-weight: 700;
-  padding: 4px 14px; border-radius: 999px; border: var(--borde);
-  background: var(--accent); color: var(--ink);
+.tarjeta-contenido:active { transform: translate(3px, 4px); box-shadow: none; }
+.contenido-nombre { font-family: var(--fuente-titulo); font-size: 24px; font-weight: 700; }
+.contenido-ejemplo { font-size: 18px; opacity: .85; }
+@media (max-width: 900px) { .grupos { grid-template-columns: 1fr; } }
+
+/* ---------- presentación de palabras ---------- */
+
+.progreso { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; flex: 1; }
+.paso { width: 22px; height: 22px; border-radius: 50%; border: var(--borde); background: var(--surface); }
+.paso.hecho { background: var(--primary); }
+.paso.actual { background: var(--accent); transform: scale(1.25); }
+.tarjeta-palabra {
+  min-width: min(720px, 90vw); min-height: 300px; padding: 24px 48px;
+  border: var(--borde); border-radius: 40px; background: var(--surface); color: var(--ink);
+  font-family: var(--fuente); font-size: clamp(72px, 11vw, 128px); font-weight: 700;
+  letter-spacing: .12em; line-height: 1.2;
+  box-shadow: 10px 12px 0 var(--ink);
+  animation: aparecer .25s ease-out;
 }
+.silaba { padding: 0 .08em; }
+.silaba-a { color: var(--ink); }
+.silaba-b { color: #C2185B; }
+.silaba + .silaba { margin-left: .25em; }
+.boton-redondo { width: 84px; min-height: 84px; padding: 0; font-size: 30px; }
+@keyframes aparecer { from { transform: scale(.92) rotate(-2deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- ajustes ---------- */
+
+.ajustes { align-items: stretch; max-width: 560px; }
+.campo { display: flex; flex-direction: column; gap: 10px; }
+.campo > span { font-weight: 700; }
+.opciones { display: flex; gap: 8px; flex-wrap: wrap; }
+.opcion { min-height: 56px; padding: 0 16px; border-radius: 14px; border: var(--borde); background: var(--bg); font-weight: 700; }
+.opcion.activa { background: var(--primary); color: var(--on-primary); box-shadow: var(--sombra-chica); }
+.casilla { display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 700; }
+.casilla input { width: 28px; height: 28px; accent-color: var(--ink); }
+.ajustes small { opacity: .75; font-size: 16px; margin-top: -12px; }
 
 /* ---------- juego ---------- */
 
@@ -226,35 +249,6 @@ button.tarjeta-juego:active { transform: translate(5px, 6px); box-shadow: none; 
 .pista-arrastrar { margin: 0; font-size: 24px; font-weight: 700; }
 .resumen { display: flex; gap: 32px; font-family: var(--fuente-titulo); font-size: 52px; align-items: center; }
 .resumen > div { display: flex; align-items: center; gap: 10px; }
-
-/* ---------- perfiles (panel) ---------- */
-
-.panel-lista { display: flex; flex-direction: column; gap: 14px; max-width: 900px; width: 100%; margin: 0 auto; }
-.fila-perfil {
-  display: grid; grid-template-columns: 1.2fr 1.5fr 1fr 2fr; gap: 12px; align-items: center; text-align: left;
-  min-height: 72px; padding: 12px 20px; border: var(--borde); border-radius: var(--radio); background: var(--surface);
-  box-shadow: var(--sombra-chica);
-}
-.fila-perfil strong { font-family: var(--fuente-titulo); font-size: 26px; }
-
-.formulario {
-  display: flex; flex-direction: column; gap: 28px; max-width: 900px; width: 100%; margin: 0 auto;
-  background: var(--surface); border: var(--borde); border-radius: 28px; padding: 28px; box-shadow: var(--sombra);
-}
-.campo { display: flex; flex-direction: column; gap: 10px; }
-.campo > span { font-weight: 700; }
-.campo small { opacity: .75; font-size: 16px; }
-.campo input:not([type=checkbox]), .campo select {
-  min-height: 56px; padding: 0 16px; border-radius: 14px; border: var(--borde); background: var(--bg);
-}
-.opciones { display: flex; gap: 8px; flex-wrap: wrap; }
-.opcion { min-width: 56px; min-height: 56px; padding: 0 16px; border-radius: 14px; border: var(--borde); background: var(--bg); font-weight: 700; }
-.opcion.activa { background: var(--primary); color: var(--on-primary); box-shadow: var(--sombra-chica); }
-.casilla { display: flex; align-items: center; gap: 12px; min-height: 48px; }
-.casilla input { width: 28px; height: 28px; accent-color: var(--ink); }
-.tabla { border-collapse: collapse; width: 100%; font-size: 17px; background: var(--bg); border: var(--borde); border-radius: 14px; overflow: hidden; }
-.tabla th, .tabla td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--bg-puntos); }
-.zona-peligro { padding-top: 12px; border-top: 3px dashed var(--bg-puntos); }
 
 /* ---------- aviso de orientación (solo tablet en vertical) ---------- */
 

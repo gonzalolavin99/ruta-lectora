@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { nivelesDisponibles, type Estimulo } from '../../engine/contenido';
-import { armarCola, clasificar, elegirRegla, reglasValidas } from './reglas';
+import { armarCola, clasificar, elegirPalabras, elegirRegla, reglasValidas } from './reglas';
 
 const e = (texto: string, silabas: string[]): Estimulo =>
   ({ id: texto, texto, silabas, estructura: '', tipo: 'palabra', revisado: false });
@@ -33,6 +33,20 @@ describe('cada nivel tiene consignas posibles', () => {
       const cola = armarCola(b.estimulos, regla, 30, 0.45);
       expect(cola).toHaveLength(30);
       for (const item of cola) expect(clasificar(item.estimulo, regla)).toBe(item.esObjetivo);
+    });
+  }
+});
+
+describe('palabras de la ronda', () => {
+  for (const b of nivelesDisponibles('decodificacion')) {
+    it(`nivel ${b.nivel}: 12 sin repetir, con objetivos y distractores`, () => {
+      const regla = elegirRegla(b.estimulos);
+      const palabras = elegirPalabras(b.estimulos, regla);
+      expect(palabras.length).toBeGreaterThanOrEqual(8);
+      expect(palabras.length).toBeLessThanOrEqual(12);
+      expect(new Set(palabras.map((p) => p.id)).size).toBe(palabras.length);
+      expect(palabras.filter((p) => clasificar(p, regla) === true).length).toBeGreaterThanOrEqual(4);
+      expect(palabras.filter((p) => clasificar(p, regla) === false).length).toBeGreaterThanOrEqual(4);
     });
   }
 });

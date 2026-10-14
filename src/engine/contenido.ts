@@ -17,8 +17,14 @@ export interface Banco {
   objetivo: Objetivo;
   nivel: number;
   titulo: string;
+  nombreCorto: string;
   revisado: boolean;
   estimulos: Estimulo[];
+}
+
+/** Sílabas, palabras o pseudopalabras (según el primer estímulo del banco). */
+export function tipoDeBanco(b: Banco): Estimulo['tipo'] {
+  return b.estimulos[0]?.tipo ?? 'palabra';
 }
 
 const archivos = import.meta.glob<Banco>('/content/*/nivel-*.json', { eager: true, import: 'default' });

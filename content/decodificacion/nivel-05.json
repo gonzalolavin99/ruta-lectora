@@ -2,6 +2,7 @@
   "objetivo": "decodificacion",
   "nivel": 5,
   "titulo": "Palabras con VC y CVC",
+  "nombreCorto": "Con CVC",
   "revisado": false,
   "estimulos": [
     {

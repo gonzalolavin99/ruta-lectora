@@ -12,13 +12,13 @@ Mascota: el **Kiltro**.
 | Archivo | Qué contiene |
 |---|---|
 | `docs/01-diseno.md` | Diseño general (Fase 1): capas, regla adaptativa, mundos, tablas de niveles |
-| `docs/02-fase-2-basket.md` | Fase 2: cómo funciona Basket y lo que se decidió |
+| `docs/02-fase-2-basket.md` | Fase 2: cómo funciona una sesión y Basket, y lo que se decidió |
 | `docs/estilos-por-tramo.html` | Colores y letra de cada tramo |
 
 ## Fases
 
 1. ✅ Diseño
-2. ✅ Motor base + perfil del niño + Basket *(esperando aprobación de Fran)*
+2. ✅ Motor base + Basket, con selección por curso y presentación de palabras *(esperando aprobación de Fran)*
 3. Turbo (modo sesión y modo casa)
 4. Crash
 5. Evaluación inicial de ubicación
@@ -50,8 +50,8 @@ o sea, la versión publicada en Vercel.)
 content/          Bancos de palabras (JSON editables). content/decodificacion/nivel-NN.json
 src/engine/       Regla adaptativa, carga de contenido, análisis de sílabas
 src/games/basket/ Juego Basket (escena Phaser + pantalla React)
-src/profile/      Elegir jugador e inicio del niño
-src/panel/        Perfiles: crear y editar jugadores, historial
+src/sesion/       Elegir curso y contenido, presentación de palabras, sesión
+src/panel/        Ajustes (letra y sonido)
 src/data/         Guardado local (IndexedDB)
 src/ui/           Estilos por tramo, Kiltro, logo
 mundos/           (Fase futura) paquetes de dibujos por mundo
