@@ -139,9 +139,10 @@ Las listas están en `content/decodificacion/nivel-01.json` a `nivel-11.json`. M
 
 **En el computador de Gonza:** doble clic en `iniciar.cmd` (abre el navegador solo), o en la terminal `npm.cmd run dev` y abrir http://localhost:5173.
 
-**En el iPad:**
-- Con el computador y el iPad en el mismo wifi, se abre en Safari la dirección `http://192.168.x.x:5173` que muestra `npm run dev`.
-- Para **instalarla como app** hay que publicarla en Vercel. Después, en Safari: Compartir → Agregar a inicio.
+**En el iPad o el Mac de Fran:** abrir **https://ruta-lectora-kappa.vercel.app** en Safari.
+- iPad: Compartir → **Agregar a pantalla de inicio**.
+- Mac: Archivo → **Agregar al Dock**.
+- Después de abrirla una vez, funciona sin internet.
 
 **Recorrido sugerido:**
 1. Tocar **1° básico** → **Pseudopalabras → CV-CV**.

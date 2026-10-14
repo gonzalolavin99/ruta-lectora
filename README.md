@@ -7,6 +7,17 @@ Mascota: el **Kiltro**.
 - **Todos los datos quedan en el aparato.** No hay servidor de datos. Vercel solo publica el programa.
 - Las decisiones clínicas las toma la fonoaudióloga. Todo contenido nuevo queda con `"revisado": false`.
 
+## Dirección publicada
+
+**https://ruta-lectora-kappa.vercel.app**
+
+Para instalarla en el iPad o iPhone: abrir la dirección en **Safari** → Compartir → **Agregar a pantalla de inicio**.
+En el Mac: en Safari, menú Archivo → **Agregar al Dock**; en Chrome, el ícono de instalar en la barra de direcciones.
+Después de abrirla una vez, funciona sin internet.
+
+La dirección no aparece en Google (está marcada como no indexable). No se activó Vercel Analytics, para no
+registrar visitas.
+
 ## Documentos
 
 | Archivo | Qué contiene |
@@ -60,9 +71,8 @@ public/audio/     (Fase futura) grabaciones, un archivo por id de estímulo
 
 ### Publicar en Vercel
 
-1. Subir este repositorio a GitHub (privado).
-2. En vercel.com → *Add New Project* → elegir el repositorio. Vercel detecta Vite solo
-   (build `npm run build`, carpeta `dist`).
-3. Cada `git push` publica una versión nueva.
+Ya está conectado: repositorio privado `gonzalolavin99/ruta-lectora` → proyecto `ruta-lectora` en Vercel.
+Cada `git push` a `main` publica una versión nueva en unos segundos. Los encabezados de seguridad y
+caché están en `vercel.json`.
 
 **Privacidad:** el repositorio nunca debe tener datos de pacientes. Si se prueba, usar perfiles inventados.
