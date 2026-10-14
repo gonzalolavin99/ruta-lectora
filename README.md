@@ -51,8 +51,8 @@ content/          Bancos de palabras (JSON editables). content/decodificacion/ni
 src/engine/       Regla adaptativa, carga de contenido, análisis de sílabas
 src/games/basket/ Juego Basket (escena Phaser + pantalla React)
 src/profile/      Elegir jugador e inicio del niño
-src/panel/        Zona de adulto con PIN
-src/data/         Guardado local (IndexedDB) y PIN
+src/panel/        Perfiles: crear y editar jugadores, historial
+src/data/         Guardado local (IndexedDB)
 src/ui/           Estilos por tramo, Kiltro, logo
 mundos/           (Fase futura) paquetes de dibujos por mundo
 public/audio/     (Fase futura) grabaciones, un archivo por id de estímulo

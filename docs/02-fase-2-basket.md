@@ -9,7 +9,7 @@
 | Tema | Decisión |
 |---|---|
 | Nombre | **Ruta Lectora**, con el **Kiltro** como mascota ✅ |
-| Colores por tramo | Aprobados ✅ |
+| Colores por tramo | **Versión 2** (pedido de Fran): más juvenil y claro, estilo "sticker" (ver abajo) |
 | Escenario | Una cancha de básquet |
 | Mecánica | Caen pelotas con palabras y el niño **arrastra el aro** para atrapar solo las que cumplen la consigna (ej. "las que tienen la letra o") |
 | Dificultad | La **velocidad** |
@@ -75,11 +75,23 @@ El texto de cada consigna se puede editar en `content/basket/consignas.json`.
 
 ---
 
+## Ajustes para ahorrar tiempo en sesión (pedido de Fran)
+
+- **Velocidad dentro del juego:** arriba a la derecha está el control **− Velocidad +**. Funciona antes de apretar ¡Vamos! y durante el juego, y el cambio se nota al tiro, también en las pelotas que ya vienen cayendo. Queda guardado en el perfil. Al cambiarla a mano, el bloque de 10 parte de cero para que la regla 80/60 mida la velocidad nueva.
+- **Sin PIN:** el botón "⚙️ Perfiles" entra directo. En "¿Quién juega?" hay una tarjeta **+ Nuevo jugador** para crear un perfil en segundos.
+
+## Estilo visual, versión 2
+
+- Fondos claros con puntitos, nunca oscuros. 2°–3° amarillo, 4°–5° menta y celeste, 6°–7° lila con lima.
+- Bordes de tinta y sombras desplazadas (estilo sticker), botones redondos y tarjetas levemente giradas.
+- Letra **Fredoka** (redondeada) solo para títulos y botones. **Las palabras que el niño lee siguen en Andika** (u OpenDyslexic), por legibilidad.
+- Se mantienen las reglas clínicas: sin blanco puro, alto contraste y botones grandes.
+
 ## Qué más hay en esta fase
 
 - **Elegir jugador:** cada niño toca su alias.
 - **Inicio del niño:** con el estilo de su tramo. El Kiltro aparece grande en 2°–3°, chico en 4°–5° y no aparece en 6°–7°. Turbo y Crash se ven como "Pronto".
-- **Zona de adulto con PIN** (4 números, se crea la primera vez):
+- **Perfiles** (sin PIN):
   - crear, editar y eliminar perfiles: alias, curso, nivel de lectura, velocidad, fijar velocidad, tamaño del bloque y letra (Andika u OpenDyslexic)
   - ver las últimas 15 rondas de cada niño: consigna, % de acierto, encestadas y cambio de velocidad
 - **Se guarda cada respuesta** con la palabra, la consigna, si era correcta y el tiempo de reacción. Esos datos son la base de las métricas e informes de la Fase 6.
@@ -120,9 +132,10 @@ Las listas están en `content/decodificacion/nivel-01.json` a `nivel-11.json`. M
 - Para **instalarla como app** hay que publicarla en Vercel. Después, en Safari: Compartir → Agregar a inicio.
 
 **Recorrido sugerido:**
-1. Zona de adulto → crear un PIN → crear un perfil **inventado** (por ejemplo "PRUEBA", 3°, nivel de lectura 3).
+1. En "¿Quién juega?" tocar **+ Nuevo jugador** y crear un perfil **inventado** (por ejemplo "PRUEBA", 3°, nivel de lectura 3).
 2. Volver, elegir el perfil y jugar Basket.
 3. Crear otro perfil de 5° y uno de 7° para ver los tres estilos.
-4. Volver a la zona de adulto y revisar el historial de rondas.
+4. Durante el juego, probar el control **− Velocidad +**.
+5. En "⚙️ Perfiles" revisar el historial de rondas.
 
 **Qué mirar:** ¿se leen bien las palabras? ¿Es cómodo arrastrar el aro en el iPad? ¿La velocidad 1 es lo bastante lenta para un niño que recién empieza?

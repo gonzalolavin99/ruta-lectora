@@ -2,6 +2,8 @@ import '@fontsource/andika/400.css';
 import '@fontsource/andika/700.css';
 import '@fontsource/opendyslexic/400.css';
 import '@fontsource/opendyslexic/700.css';
+import '@fontsource/fredoka/600.css';
+import '@fontsource/fredoka/700.css';
 import './ui/estilos.css';
 
 import { StrictMode } from 'react';

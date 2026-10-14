@@ -103,6 +103,13 @@ export class BasketScene extends Phaser.Scene {
     this.espera = 600;
   }
 
+  /** La fonoaudióloga cambió la velocidad: se nota al tiro, también en las pelotas que ya caen. */
+  cambiarVelocidad(p: ParametrosVelocidad) {
+    const velocidad = (Y_FIN - Y_INICIO) / p.caidaMs;
+    for (const b of this.bolas) b.velocidad = velocidad;
+    this.espera = Math.min(this.espera, p.intervaloMs);
+  }
+
   update(_t: number, dt: number) {
     if (!this.jugando || this.terminado) return;
 
@@ -164,9 +171,11 @@ export class BasketScene extends Phaser.Scene {
       .setResolution(Math.min(3, window.devicePixelRatio || 1));
     const anchoEtiqueta = Math.max(104, texto.width + 36);
     const fondo = this.add.graphics();
+    fondo.fillStyle(color(c.etiquetaBorde), 1); // sombra tipo sticker
+    fondo.fillRoundedRect(-anchoEtiqueta / 2 + 5, -38 + 6, anchoEtiqueta, 76, 20);
     fondo.fillStyle(color(c.etiqueta), 1);
     fondo.fillRoundedRect(-anchoEtiqueta / 2, -38, anchoEtiqueta, 76, 20);
-    fondo.lineStyle(4, color(c.etiquetaBorde), 1);
+    fondo.lineStyle(5, color(c.etiquetaBorde), 1);
     fondo.strokeRoundedRect(-anchoEtiqueta / 2, -38, anchoEtiqueta, 76, 20);
     const etiqueta = this.add.container(0, 0, [fondo, texto]);
     const contenedor = this.add.container(CARRILES[carril], Y_INICIO, [imagen, etiqueta]).setDepth(5);

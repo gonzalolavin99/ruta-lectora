@@ -1,74 +1,16 @@
-// Zona de adulto (protegida con PIN). Versión inicial de la Fase 2:
-// crear y editar perfiles, y ver las últimas rondas. El panel completo llega en la Fase 6.
+// Perfiles (sin PIN, pedido de Fran: en sesión no hay tiempo que perder).
+// Crear y editar perfiles, y ver las últimas rondas. El panel completo llega en la Fase 6.
 
 import { useLiveQuery } from 'dexie-react-hooks';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { db, perfilNuevo, type Fuente, type Perfil } from '../data/db';
-import { guardarPin, hayPin, verificarPin } from '../data/pin';
 import { nivelesDisponibles } from '../engine/contenido';
 import { VELOCIDAD_MAX } from '../games/basket/velocidad';
 import { FAMILIA_FUENTE, TEMAS, tramoDeCurso } from '../ui/tema';
-import { TecladoPin } from './TecladoPin';
 
-type Acceso = 'cargando' | 'crear' | 'confirmar' | 'ingresar' | 'dentro';
-
-export function ZonaAdulto({ alSalir }: { alSalir: () => void }) {
-  const [acceso, setAcceso] = useState<Acceso>('cargando');
-  const [pinNuevo, setPinNuevo] = useState('');
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    void hayPin().then((hay) => setAcceso(hay ? 'ingresar' : 'crear'));
-  }, []);
-
-  if (acceso !== 'dentro') {
-    return (
-      <div className="pantalla neutra">
-        <header className="cabecera">
-          <h1 className="titulo">Zona de adulto</h1>
-          <button className="boton boton-secundario" onClick={alSalir}>Volver</button>
-        </header>
-        <main className="centrada">
-          {acceso === 'crear' && (
-            <TecladoPin
-              titulo="Crea un PIN de 4 números"
-              alCompletar={(pin) => {
-                setPinNuevo(pin);
-                setError('');
-                setAcceso('confirmar');
-              }}
-            />
-          )}
-          {acceso === 'confirmar' && (
-            <TecladoPin
-              titulo="Repite el PIN"
-              error={error}
-              alCompletar={async (pin) => {
-                if (pin !== pinNuevo) {
-                  setError('No coinciden. Vuelve a crearlo.');
-                  setAcceso('crear');
-                  return;
-                }
-                await guardarPin(pin);
-                setAcceso('dentro');
-              }}
-            />
-          )}
-          {acceso === 'ingresar' && (
-            <TecladoPin
-              titulo="Ingresa el PIN"
-              error={error}
-              alCompletar={async (pin) => {
-                if (await verificarPin(pin)) setAcceso('dentro');
-                else setError('PIN incorrecto.');
-              }}
-            />
-          )}
-        </main>
-      </div>
-    );
-  }
-
+/** Si `nuevo` es true, abre directo el formulario de un jugador nuevo y al guardar vuelve. */
+export function ZonaAdulto({ alSalir, nuevo = false }: { alSalir: () => void; nuevo?: boolean }) {
+  if (nuevo) return <EditorPerfil perfil={null} alCerrar={alSalir} />;
   return <Panel alSalir={alSalir} />;
 }
 
@@ -85,7 +27,7 @@ function Panel({ alSalir }: { alSalir: () => void }) {
       <header className="cabecera">
         <h1 className="titulo">Perfiles</h1>
         <div className="fila">
-          <button className="boton" onClick={() => setEditando('nuevo')}>+ Nuevo perfil</button>
+          <button className="boton" onClick={() => setEditando('nuevo')}>+ Nuevo jugador</button>
           <button className="boton boton-secundario" onClick={alSalir}>Salir</button>
         </div>
       </header>
@@ -153,7 +95,7 @@ function EditorPerfil({ perfil, alCerrar }: { perfil: Perfil | null; alCerrar: (
   return (
     <div className="pantalla neutra">
       <header className="cabecera">
-        <h1 className="titulo">{perfil ? `Perfil: ${perfil.alias}` : 'Nuevo perfil'}</h1>
+        <h1 className="titulo">{perfil ? `Perfil: ${perfil.alias}` : 'Nuevo jugador'}</h1>
         <div className="fila">
           <button className="boton" onClick={guardar} disabled={!alias.trim()}>Guardar</button>
           <button className="boton boton-secundario" onClick={alCerrar}>Cancelar</button>

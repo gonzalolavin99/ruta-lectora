@@ -1,5 +1,6 @@
-// Estilo visual por tramo (docs/estilos-por-tramo.html, colores aprobados por Fran).
-// El TRAMO define cómo se ve; nunca la dificultad.
+// Estilo visual por tramo. El TRAMO define cómo se ve; nunca la dificultad.
+// Versión 2 (pedido de Fran, oct 2026): más juvenil, claro y vivo, estilo "sticker":
+// colores intensos, bordes de tinta y sombras desplazadas. Sin blanco puro.
 
 export type Tramo = 'explorar' | 'aventura' | 'estilo';
 
@@ -32,41 +33,50 @@ export interface Tema {
   nombre: string;
   cursos: string;
   bg: string;
+  bgPuntos: string; // color del patrón de puntitos del fondo
   surface: string;
   text: string;
+  ink: string; // bordes y sombras
   primary: string;
   onPrimary: string;
+  accent: string;
   okBg: string;
   radio: number;
   cancha: ColoresCancha;
 }
 
+const CREMA = '#FFFDF7';
+const TINTA = '#1D1640';
+
 export const TEMAS: Record<Tramo, Tema> = {
   explorar: {
     tramo: 'explorar', nombre: 'Explorar', cursos: '2°–3° básico',
-    bg: '#FFF6E5', surface: '#FFE6BF', text: '#2B2340', primary: '#F08A5D', onPrimary: '#2B2340', okBg: '#D4F1E4', radio: 28,
+    bg: '#FFF1C9', bgPuntos: '#FFD978', surface: CREMA, text: TINTA, ink: TINTA,
+    primary: '#FFC93C', onPrimary: TINTA, accent: '#FF6FB5', okBg: '#D4F1E4', radio: 28,
     cancha: {
-      pared: '#FBE3C4', paredDetalle: '#F7D3A6', piso: '#EDB97E', pisoLinea: '#E0A866', lineas: '#FFF6E5',
-      bola: '#F08A5D', costura: '#2B2340', etiqueta: '#FFF6E5', etiquetaBorde: '#2B2340', etiquetaTexto: '#2B2340',
-      aro: '#E4572E', tablero: '#FFF6E5', tableroBorde: '#2B2340', red: '#FFF6E5', poste: '#6C5B7B',
+      pared: '#FFE7A3', paredDetalle: '#FFDB80', piso: '#F7B267', pisoLinea: '#EFA052', lineas: CREMA,
+      bola: '#FF8A3D', costura: TINTA, etiqueta: CREMA, etiquetaBorde: TINTA, etiquetaTexto: TINTA,
+      aro: '#FF4F8B', tablero: CREMA, tableroBorde: TINTA, red: CREMA, poste: TINTA,
     },
   },
   aventura: {
     tramo: 'aventura', nombre: 'Aventura', cursos: '4°–5° básico',
-    bg: '#F3EDE2', surface: '#E4D8C2', text: '#1F2A30', primary: '#146B69', onPrimary: '#FBF7F0', okBg: '#D9E8D0', radio: 14,
+    bg: '#D9F6EE', bgPuntos: '#A6E8D6', surface: CREMA, text: TINTA, ink: TINTA,
+    primary: '#4CC9F0', onPrimary: TINTA, accent: '#C6F432', okBg: '#D9F2C2', radio: 20,
     cancha: {
-      pared: '#E4D8C2', paredDetalle: '#D6C6A8', piso: '#C99A64', pisoLinea: '#B88752', lineas: '#F3EDE2',
-      bola: '#D9733A', costura: '#1F2A30', etiqueta: '#F3EDE2', etiquetaBorde: '#146B69', etiquetaTexto: '#1F2A30',
-      aro: '#C4502A', tablero: '#F3EDE2', tableroBorde: '#146B69', red: '#F3EDE2', poste: '#146B69',
+      pared: '#BFEFE2', paredDetalle: '#A6E6D5', piso: '#57B6E6', pisoLinea: '#4AA6D6', lineas: CREMA,
+      bola: '#FF8A3D', costura: TINTA, etiqueta: CREMA, etiquetaBorde: TINTA, etiquetaTexto: TINTA,
+      aro: '#FF5A36', tablero: CREMA, tableroBorde: TINTA, red: CREMA, poste: TINTA,
     },
   },
   estilo: {
     tramo: 'estilo', nombre: 'Estilo', cursos: '6°–7° básico',
-    bg: '#1A2230', surface: '#243042', text: '#EEF1F5', primary: '#3CE0C5', onPrimary: '#1A2230', okBg: '#1F3D3F', radio: 8,
+    bg: '#EDE4FF', bgPuntos: '#D5C3FF', surface: CREMA, text: TINTA, ink: TINTA,
+    primary: '#C6F432', onPrimary: TINTA, accent: '#FF4FA3', okBg: '#E4F8B8', radio: 14,
     cancha: {
-      pared: '#1A2230', paredDetalle: '#202A3B', piso: '#243042', pisoLinea: '#2B384D', lineas: '#3CE0C5',
-      bola: '#FF8A3D', costura: '#1A2230', etiqueta: '#1A2230', etiquetaBorde: '#3CE0C5', etiquetaTexto: '#EEF1F5',
-      aro: '#FF5C8A', tablero: '#243042', tableroBorde: '#3CE0C5', red: '#EEF1F5', poste: '#3CE0C5',
+      pared: '#E0D2FF', paredDetalle: '#D3C0FF', piso: '#8F6BFF', pisoLinea: '#8360F5', lineas: '#C6F432',
+      bola: '#FF8A3D', costura: TINTA, etiqueta: CREMA, etiquetaBorde: TINTA, etiquetaTexto: TINTA,
+      aro: '#FF4FA3', tablero: CREMA, tableroBorde: TINTA, red: CREMA, poste: TINTA,
     },
   },
 };
@@ -80,10 +90,13 @@ export const FAMILIA_FUENTE = {
 export function variablesCss(t: Tema): Record<string, string> {
   return {
     '--bg': t.bg,
+    '--bg-puntos': t.bgPuntos,
     '--surface': t.surface,
     '--text': t.text,
+    '--ink': t.ink,
     '--primary': t.primary,
     '--on-primary': t.onPrimary,
+    '--accent': t.accent,
     '--ok-bg': t.okBg,
     '--radio': `${t.radio}px`,
   };

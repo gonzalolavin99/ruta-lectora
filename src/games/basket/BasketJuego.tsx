@@ -39,6 +39,7 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
   const [regla, setRegla] = useState<Regla | null>(null);
   const [marcador, setMarcador] = useState({ vidas: VIDAS_POR_RONDA, encestadas: 0, estrellas: 0 });
   const [numeroRonda, setNumeroRonda] = useState(0);
+  const [velocidad, setVelocidad] = useState(perfil.basket.nivel);
   const marcadorRef = useRef(marcador);
   const actualizarMarcador = (m: typeof marcador) => {
     marcadorRef.current = m;
@@ -127,6 +128,7 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
         max: VELOCIDAD_MAX,
       });
       estadoRef.current = estado;
+      if (cambio) setVelocidad(estado.nivel);
       if (cambio) void db.perfiles.update(perfil.id, { basket: estado, actualizado: Date.now() });
     };
 
@@ -193,6 +195,17 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
     return () => document.removeEventListener('visibilitychange', alOcultar);
   }, [fase, pausar]);
 
+  // La fonoaudióloga ajusta la velocidad ahí mismo, sin salir del juego.
+  // El bloque en curso parte de cero para que la regla 80/60 mida la velocidad nueva.
+  const cambiarVelocidad = (delta: number) => {
+    const nivel = Math.min(VELOCIDAD_MAX, Math.max(VELOCIDAD_MIN, estadoRef.current.nivel + delta));
+    if (nivel === estadoRef.current.nivel) return;
+    estadoRef.current = { ...estadoRef.current, nivel, refuerzo: false, bloque: [] };
+    setVelocidad(nivel);
+    escenaRef.current?.cambiarVelocidad(parametros(nivel, false));
+    void db.perfiles.update(perfil.id, { basket: estadoRef.current, actualizado: Date.now() });
+  };
+
   const vamos = () => {
     activarSonido();
     escenaRef.current?.empezar();
@@ -226,6 +239,14 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
           <span aria-hidden>❚❚</span>
         </button>
         {regla && <Consigna regla={regla} />}
+        <div className="control-velocidad">
+          <button className="boton-vel" onClick={() => cambiarVelocidad(-1)} disabled={velocidad <= VELOCIDAD_MIN} aria-label="Más lento">−</button>
+          <div className="vel-valor" aria-live="polite">
+            <span>Velocidad</span>
+            <strong>{velocidad}</strong>
+          </div>
+          <button className="boton-vel" onClick={() => cambiarVelocidad(1)} disabled={velocidad >= VELOCIDAD_MAX} aria-label="Más rápido">+</button>
+        </div>
         <div className="marcador">
           <div className="vidas" aria-label={`${marcador.vidas} vidas`}>
             {Array.from({ length: VIDAS_POR_RONDA }, (_, i) => (

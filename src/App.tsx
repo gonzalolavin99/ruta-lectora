@@ -7,7 +7,7 @@ import { Inicio } from './profile/Inicio';
 import { SelectorPerfil } from './profile/SelectorPerfil';
 import { TEMAS, tramoDeCurso, variablesCss } from './ui/tema';
 
-type Pantalla = { tipo: 'perfiles' } | { tipo: 'inicio'; perfilId: string } | { tipo: 'basket'; perfilId: string } | { tipo: 'adulto' };
+type Pantalla = { tipo: 'perfiles' } | { tipo: 'inicio'; perfilId: string } | { tipo: 'basket'; perfilId: string } | { tipo: 'adulto'; nuevo?: boolean };
 
 export function App() {
   const [pantalla, setPantalla] = useState<Pantalla>({ tipo: 'perfiles' });
@@ -19,11 +19,12 @@ export function App() {
       <SelectorPerfil
         alElegir={(id) => setPantalla({ tipo: 'inicio', perfilId: id })}
         alAdulto={() => setPantalla({ tipo: 'adulto' })}
+        alNuevo={() => setPantalla({ tipo: 'adulto', nuevo: true })}
       />
     );
   }
   if (pantalla.tipo === 'adulto') {
-    return <ZonaAdulto alSalir={() => setPantalla({ tipo: 'perfiles' })} />;
+    return <ZonaAdulto nuevo={pantalla.nuevo} alSalir={() => setPantalla({ tipo: 'perfiles' })} />;
   }
   if (!perfil) return null; // cargando
 
