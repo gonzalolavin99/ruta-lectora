@@ -1,0 +1,412 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 11,
+  "titulo": "Palabras infrecuentes mixtas de 3–4 sílabas",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-11-brújula",
+      "texto": "brújula",
+      "silabas": [
+        "brú",
+        "ju",
+        "la"
+      ],
+      "estructura": "CCV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-tiburón",
+      "texto": "tiburón",
+      "silabas": [
+        "ti",
+        "bu",
+        "rón"
+      ],
+      "estructura": "CV-CV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-murciélago",
+      "texto": "murciélago",
+      "silabas": [
+        "mur",
+        "cié",
+        "la",
+        "go"
+      ],
+      "estructura": "CVC-CVV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-esqueleto",
+      "texto": "esqueleto",
+      "silabas": [
+        "es",
+        "que",
+        "le",
+        "to"
+      ],
+      "estructura": "VC-CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-trompeta",
+      "texto": "trompeta",
+      "silabas": [
+        "trom",
+        "pe",
+        "ta"
+      ],
+      "estructura": "CCVC-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-cocodrilo",
+      "texto": "cocodrilo",
+      "silabas": [
+        "co",
+        "co",
+        "dri",
+        "lo"
+      ],
+      "estructura": "CV-CV-CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-dinosaurio",
+      "texto": "dinosaurio",
+      "silabas": [
+        "di",
+        "no",
+        "sau",
+        "rio"
+      ],
+      "estructura": "CV-CV-CVV-CVV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-pingüino",
+      "texto": "pingüino",
+      "silabas": [
+        "pin",
+        "güi",
+        "no"
+      ],
+      "estructura": "CVC-CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-alfombra",
+      "texto": "alfombra",
+      "silabas": [
+        "al",
+        "fom",
+        "bra"
+      ],
+      "estructura": "VC-CVC-CCV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-chinchilla",
+      "texto": "chinchilla",
+      "silabas": [
+        "chin",
+        "chi",
+        "lla"
+      ],
+      "estructura": "CVC-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-telescopio",
+      "texto": "telescopio",
+      "silabas": [
+        "te",
+        "les",
+        "co",
+        "pio"
+      ],
+      "estructura": "CV-CVC-CV-CVV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-cucharón",
+      "texto": "cucharón",
+      "silabas": [
+        "cu",
+        "cha",
+        "rón"
+      ],
+      "estructura": "CV-CV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-ardilla",
+      "texto": "ardilla",
+      "silabas": [
+        "ar",
+        "di",
+        "lla"
+      ],
+      "estructura": "VC-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-escalera",
+      "texto": "escalera",
+      "silabas": [
+        "es",
+        "ca",
+        "le",
+        "ra"
+      ],
+      "estructura": "VC-CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-linterna",
+      "texto": "linterna",
+      "silabas": [
+        "lin",
+        "ter",
+        "na"
+      ],
+      "estructura": "CVC-CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-mochila",
+      "texto": "mochila",
+      "silabas": [
+        "mo",
+        "chi",
+        "la"
+      ],
+      "estructura": "CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-calcetín",
+      "texto": "calcetín",
+      "silabas": [
+        "cal",
+        "ce",
+        "tín"
+      ],
+      "estructura": "CVC-CV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-sombrero",
+      "texto": "sombrero",
+      "silabas": [
+        "som",
+        "bre",
+        "ro"
+      ],
+      "estructura": "CVC-CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-guitarra",
+      "texto": "guitarra",
+      "silabas": [
+        "gui",
+        "ta",
+        "rra"
+      ],
+      "estructura": "CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-frambuesa",
+      "texto": "frambuesa",
+      "silabas": [
+        "fram",
+        "bue",
+        "sa"
+      ],
+      "estructura": "CCVC-CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-empanada",
+      "texto": "empanada",
+      "silabas": [
+        "em",
+        "pa",
+        "na",
+        "da"
+      ],
+      "estructura": "VC-CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-cordillera",
+      "texto": "cordillera",
+      "silabas": [
+        "cor",
+        "di",
+        "lle",
+        "ra"
+      ],
+      "estructura": "CVC-CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-araucaria",
+      "texto": "araucaria",
+      "silabas": [
+        "a",
+        "rau",
+        "ca",
+        "ria"
+      ],
+      "estructura": "V-CVV-CV-CVV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-copihue",
+      "texto": "copihue",
+      "silabas": [
+        "co",
+        "pi",
+        "hue"
+      ],
+      "estructura": "CV-CV-VV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-chirimoya",
+      "texto": "chirimoya",
+      "silabas": [
+        "chi",
+        "ri",
+        "mo",
+        "ya"
+      ],
+      "estructura": "CV-CV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-estrella",
+      "texto": "estrella",
+      "silabas": [
+        "es",
+        "tre",
+        "lla"
+      ],
+      "estructura": "VC-CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-astronauta",
+      "texto": "astronauta",
+      "silabas": [
+        "as",
+        "tro",
+        "nau",
+        "ta"
+      ],
+      "estructura": "VC-CCV-CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-relámpago",
+      "texto": "relámpago",
+      "silabas": [
+        "re",
+        "lám",
+        "pa",
+        "go"
+      ],
+      "estructura": "CV-CVC-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-anteojos",
+      "texto": "anteojos",
+      "silabas": [
+        "an",
+        "te",
+        "o",
+        "jos"
+      ],
+      "estructura": "VC-CV-V-CVC",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    },
+    {
+      "id": "dec-11-micrófono",
+      "texto": "micrófono",
+      "silabas": [
+        "mi",
+        "cró",
+        "fo",
+        "no"
+      ],
+      "estructura": "CV-CCV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "baja",
+      "revisado": false
+    }
+  ]
+}

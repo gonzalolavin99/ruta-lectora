@@ -1,0 +1,369 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 9,
+  "titulo": "Palabras con diptongos (CVV) e hiatos",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-09-pie",
+      "texto": "pie",
+      "silabas": [
+        "pie"
+      ],
+      "estructura": "CVV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-cuento",
+      "texto": "cuento",
+      "silabas": [
+        "cuen",
+        "to"
+      ],
+      "estructura": "CVVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-día",
+      "texto": "día",
+      "silabas": [
+        "dí",
+        "a"
+      ],
+      "estructura": "CV-V",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-piano",
+      "texto": "piano",
+      "silabas": [
+        "pia",
+        "no"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-nieve",
+      "texto": "nieve",
+      "silabas": [
+        "nie",
+        "ve"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-rueda",
+      "texto": "rueda",
+      "silabas": [
+        "rue",
+        "da"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-huevo",
+      "texto": "huevo",
+      "silabas": [
+        "hue",
+        "vo"
+      ],
+      "estructura": "VV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-puerta",
+      "texto": "puerta",
+      "silabas": [
+        "puer",
+        "ta"
+      ],
+      "estructura": "CVVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-cielo",
+      "texto": "cielo",
+      "silabas": [
+        "cie",
+        "lo"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-tierra",
+      "texto": "tierra",
+      "silabas": [
+        "tie",
+        "rra"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-siete",
+      "texto": "siete",
+      "silabas": [
+        "sie",
+        "te"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-nueve",
+      "texto": "nueve",
+      "silabas": [
+        "nue",
+        "ve"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-jaula",
+      "texto": "jaula",
+      "silabas": [
+        "jau",
+        "la"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-aire",
+      "texto": "aire",
+      "silabas": [
+        "ai",
+        "re"
+      ],
+      "estructura": "VV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-auto",
+      "texto": "auto",
+      "silabas": [
+        "au",
+        "to"
+      ],
+      "estructura": "VV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-peine",
+      "texto": "peine",
+      "silabas": [
+        "pei",
+        "ne"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-reina",
+      "texto": "reina",
+      "silabas": [
+        "rei",
+        "na"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-baúl",
+      "texto": "baúl",
+      "silabas": [
+        "ba",
+        "úl"
+      ],
+      "estructura": "CV-VC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-río",
+      "texto": "río",
+      "silabas": [
+        "rí",
+        "o"
+      ],
+      "estructura": "CV-V",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-tía",
+      "texto": "tía",
+      "silabas": [
+        "tí",
+        "a"
+      ],
+      "estructura": "CV-V",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-búho",
+      "texto": "búho",
+      "silabas": [
+        "bú",
+        "ho"
+      ],
+      "estructura": "CV-V",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-maíz",
+      "texto": "maíz",
+      "silabas": [
+        "ma",
+        "íz"
+      ],
+      "estructura": "CV-VC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-país",
+      "texto": "país",
+      "silabas": [
+        "pa",
+        "ís"
+      ],
+      "estructura": "CV-VC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-fuego",
+      "texto": "fuego",
+      "silabas": [
+        "fue",
+        "go"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-viento",
+      "texto": "viento",
+      "silabas": [
+        "vien",
+        "to"
+      ],
+      "estructura": "CVVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-abuela",
+      "texto": "abuela",
+      "silabas": [
+        "a",
+        "bue",
+        "la"
+      ],
+      "estructura": "V-CVV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-cuaderno",
+      "texto": "cuaderno",
+      "silabas": [
+        "cua",
+        "der",
+        "no"
+      ],
+      "estructura": "CVV-CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-ciudad",
+      "texto": "ciudad",
+      "silabas": [
+        "ciu",
+        "dad"
+      ],
+      "estructura": "CVV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-guante",
+      "texto": "guante",
+      "silabas": [
+        "guan",
+        "te"
+      ],
+      "estructura": "CVVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-09-agua",
+      "texto": "agua",
+      "silabas": [
+        "a",
+        "gua"
+      ],
+      "estructura": "V-CVV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    }
+  ]
+}

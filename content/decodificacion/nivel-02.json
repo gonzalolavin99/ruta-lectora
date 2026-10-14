@@ -1,0 +1,558 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 2,
+  "titulo": "Sílabas CV: todas las consonantes, dígrafos y ortografía contextual",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-02-ba",
+      "texto": "ba",
+      "silabas": [
+        "ba"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-be",
+      "texto": "be",
+      "silabas": [
+        "be"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-bi",
+      "texto": "bi",
+      "silabas": [
+        "bi"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-bo",
+      "texto": "bo",
+      "silabas": [
+        "bo"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-bu",
+      "texto": "bu",
+      "silabas": [
+        "bu"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-da",
+      "texto": "da",
+      "silabas": [
+        "da"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-de",
+      "texto": "de",
+      "silabas": [
+        "de"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-di",
+      "texto": "di",
+      "silabas": [
+        "di"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-do",
+      "texto": "do",
+      "silabas": [
+        "do"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-du",
+      "texto": "du",
+      "silabas": [
+        "du"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-fa",
+      "texto": "fa",
+      "silabas": [
+        "fa"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-fe",
+      "texto": "fe",
+      "silabas": [
+        "fe"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-fi",
+      "texto": "fi",
+      "silabas": [
+        "fi"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-fo",
+      "texto": "fo",
+      "silabas": [
+        "fo"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-fu",
+      "texto": "fu",
+      "silabas": [
+        "fu"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ra",
+      "texto": "ra",
+      "silabas": [
+        "ra"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-re",
+      "texto": "re",
+      "silabas": [
+        "re"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ri",
+      "texto": "ri",
+      "silabas": [
+        "ri"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ro",
+      "texto": "ro",
+      "silabas": [
+        "ro"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ru",
+      "texto": "ru",
+      "silabas": [
+        "ru"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ca",
+      "texto": "ca",
+      "silabas": [
+        "ca"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-co",
+      "texto": "co",
+      "silabas": [
+        "co"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-cu",
+      "texto": "cu",
+      "silabas": [
+        "cu"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-que",
+      "texto": "que",
+      "silabas": [
+        "que"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-qui",
+      "texto": "qui",
+      "silabas": [
+        "qui"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ga",
+      "texto": "ga",
+      "silabas": [
+        "ga"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-go",
+      "texto": "go",
+      "silabas": [
+        "go"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-gu",
+      "texto": "gu",
+      "silabas": [
+        "gu"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-gue",
+      "texto": "gue",
+      "silabas": [
+        "gue"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-gui",
+      "texto": "gui",
+      "silabas": [
+        "gui"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ce",
+      "texto": "ce",
+      "silabas": [
+        "ce"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ci",
+      "texto": "ci",
+      "silabas": [
+        "ci"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ge",
+      "texto": "ge",
+      "silabas": [
+        "ge"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-gi",
+      "texto": "gi",
+      "silabas": [
+        "gi"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ja",
+      "texto": "ja",
+      "silabas": [
+        "ja"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-je",
+      "texto": "je",
+      "silabas": [
+        "je"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-jo",
+      "texto": "jo",
+      "silabas": [
+        "jo"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ju",
+      "texto": "ju",
+      "silabas": [
+        "ju"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-cha",
+      "texto": "cha",
+      "silabas": [
+        "cha"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-che",
+      "texto": "che",
+      "silabas": [
+        "che"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-chi",
+      "texto": "chi",
+      "silabas": [
+        "chi"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-cho",
+      "texto": "cho",
+      "silabas": [
+        "cho"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-chu",
+      "texto": "chu",
+      "silabas": [
+        "chu"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-lla",
+      "texto": "lla",
+      "silabas": [
+        "lla"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-llo",
+      "texto": "llo",
+      "silabas": [
+        "llo"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-rra",
+      "texto": "rra",
+      "silabas": [
+        "rra"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-rro",
+      "texto": "rro",
+      "silabas": [
+        "rro"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ña",
+      "texto": "ña",
+      "silabas": [
+        "ña"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ño",
+      "texto": "ño",
+      "silabas": [
+        "ño"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-va",
+      "texto": "va",
+      "silabas": [
+        "va"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-vi",
+      "texto": "vi",
+      "silabas": [
+        "vi"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-ya",
+      "texto": "ya",
+      "silabas": [
+        "ya"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-yo",
+      "texto": "yo",
+      "silabas": [
+        "yo"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-za",
+      "texto": "za",
+      "silabas": [
+        "za"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    },
+    {
+      "id": "dec-02-zo",
+      "texto": "zo",
+      "silabas": [
+        "zo"
+      ],
+      "estructura": "CV",
+      "tipo": "silaba",
+      "revisado": false
+    }
+  ]
+}

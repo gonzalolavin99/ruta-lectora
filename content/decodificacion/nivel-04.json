@@ -1,0 +1,228 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 4,
+  "titulo": "Pseudopalabras CV-CV",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-04-lami",
+      "texto": "lami",
+      "silabas": [
+        "la",
+        "mi"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-tefo",
+      "texto": "tefo",
+      "silabas": [
+        "te",
+        "fo"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-mupa",
+      "texto": "mupa",
+      "silabas": [
+        "mu",
+        "pa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-sone",
+      "texto": "sone",
+      "silabas": [
+        "so",
+        "ne"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-ripo",
+      "texto": "ripo",
+      "silabas": [
+        "ri",
+        "po"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-nalu",
+      "texto": "nalu",
+      "silabas": [
+        "na",
+        "lu"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-pemo",
+      "texto": "pemo",
+      "silabas": [
+        "pe",
+        "mo"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-fusa",
+      "texto": "fusa",
+      "silabas": [
+        "fu",
+        "sa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-toli",
+      "texto": "toli",
+      "silabas": [
+        "to",
+        "li"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-besu",
+      "texto": "besu",
+      "silabas": [
+        "be",
+        "su"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-mife",
+      "texto": "mife",
+      "silabas": [
+        "mi",
+        "fe"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-dulo",
+      "texto": "dulo",
+      "silabas": [
+        "du",
+        "lo"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-nopi",
+      "texto": "nopi",
+      "silabas": [
+        "no",
+        "pi"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-safu",
+      "texto": "safu",
+      "silabas": [
+        "sa",
+        "fu"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-gobe",
+      "texto": "gobe",
+      "silabas": [
+        "go",
+        "be"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-rutu",
+      "texto": "rutu",
+      "silabas": [
+        "ru",
+        "tu"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-tamu",
+      "texto": "tamu",
+      "silabas": [
+        "ta",
+        "mu"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-sepi",
+      "texto": "sepi",
+      "silabas": [
+        "se",
+        "pi"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-buno",
+      "texto": "buno",
+      "silabas": [
+        "bu",
+        "no"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-04-dila",
+      "texto": "dila",
+      "silabas": [
+        "di",
+        "la"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    }
+  ]
+}

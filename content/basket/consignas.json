@@ -1,0 +1,12 @@
+{
+  "juego": "basket",
+  "nota": "Texto de cada consigna. {x} se reemplaza por la letra, sílaba o número. Se muestra escrita, sin audio.",
+  "revisado": false,
+  "consignas": {
+    "contiene-letra": "Encesta las que tienen la letra",
+    "empieza-letra": "Encesta las que empiezan con la letra",
+    "empieza-silaba": "Encesta las que empiezan con la sílaba",
+    "termina-letra": "Encesta las que terminan con la letra",
+    "num-silabas": "Encesta las que tienen esta cantidad de sílabas:"
+  }
+}

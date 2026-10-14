@@ -1,0 +1,365 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 7,
+  "titulo": "Palabras con sílabas trabadas (CCV)",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-07-plato",
+      "texto": "plato",
+      "silabas": [
+        "pla",
+        "to"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-tren",
+      "texto": "tren",
+      "silabas": [
+        "tren"
+      ],
+      "estructura": "CCVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-globo",
+      "texto": "globo",
+      "silabas": [
+        "glo",
+        "bo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-flor",
+      "texto": "flor",
+      "silabas": [
+        "flor"
+      ],
+      "estructura": "CCVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-brazo",
+      "texto": "brazo",
+      "silabas": [
+        "bra",
+        "zo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-tigre",
+      "texto": "tigre",
+      "silabas": [
+        "ti",
+        "gre"
+      ],
+      "estructura": "CV-CCV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-libro",
+      "texto": "libro",
+      "silabas": [
+        "li",
+        "bro"
+      ],
+      "estructura": "CV-CCV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-cabra",
+      "texto": "cabra",
+      "silabas": [
+        "ca",
+        "bra"
+      ],
+      "estructura": "CV-CCV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-blusa",
+      "texto": "blusa",
+      "silabas": [
+        "blu",
+        "sa"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-clavo",
+      "texto": "clavo",
+      "silabas": [
+        "cla",
+        "vo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-crema",
+      "texto": "crema",
+      "silabas": [
+        "cre",
+        "ma"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-grillo",
+      "texto": "grillo",
+      "silabas": [
+        "gri",
+        "llo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-trigo",
+      "texto": "trigo",
+      "silabas": [
+        "tri",
+        "go"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-dragón",
+      "texto": "dragón",
+      "silabas": [
+        "dra",
+        "gón"
+      ],
+      "estructura": "CCV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-flecha",
+      "texto": "flecha",
+      "silabas": [
+        "fle",
+        "cha"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-planta",
+      "texto": "planta",
+      "silabas": [
+        "plan",
+        "ta"
+      ],
+      "estructura": "CCVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-bruja",
+      "texto": "bruja",
+      "silabas": [
+        "bru",
+        "ja"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-pluma",
+      "texto": "pluma",
+      "silabas": [
+        "plu",
+        "ma"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-trompo",
+      "texto": "trompo",
+      "silabas": [
+        "trom",
+        "po"
+      ],
+      "estructura": "CCVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-primo",
+      "texto": "primo",
+      "silabas": [
+        "pri",
+        "mo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-broche",
+      "texto": "broche",
+      "silabas": [
+        "bro",
+        "che"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-clase",
+      "texto": "clase",
+      "silabas": [
+        "cla",
+        "se"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-cruz",
+      "texto": "cruz",
+      "silabas": [
+        "cruz"
+      ],
+      "estructura": "CCVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-frutilla",
+      "texto": "frutilla",
+      "silabas": [
+        "fru",
+        "ti",
+        "lla"
+      ],
+      "estructura": "CCV-CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-plaza",
+      "texto": "plaza",
+      "silabas": [
+        "pla",
+        "za"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-tres",
+      "texto": "tres",
+      "silabas": [
+        "tres"
+      ],
+      "estructura": "CCVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-trapo",
+      "texto": "trapo",
+      "silabas": [
+        "tra",
+        "po"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-regla",
+      "texto": "regla",
+      "silabas": [
+        "re",
+        "gla"
+      ],
+      "estructura": "CV-CCV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-sobre",
+      "texto": "sobre",
+      "silabas": [
+        "so",
+        "bre"
+      ],
+      "estructura": "CV-CCV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-07-glotón",
+      "texto": "glotón",
+      "silabas": [
+        "glo",
+        "tón"
+      ],
+      "estructura": "CCV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    }
+  ]
+}

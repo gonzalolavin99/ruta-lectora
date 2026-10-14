@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estilos por tramo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Andika, "Trebuchet MS", sans-serif; background: #E9E6E0; color: #222; padding: 24px 16px; }
+  h1 { font-size: 28px; margin: 0 0 4px; }
+  .nota { margin: 0 0 24px; font-size: 18px; color: #444; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .tramo { background: var(--bg); color: var(--text); border-radius: var(--radio); padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .tramo h2 { margin: 0; font-size: 24px; }
+  .tramo .sub { margin: -12px 0 0; opacity: .8; font-size: 17px; }
+  .palabra { background: var(--surface); border-radius: var(--radio); text-align: center; padding: 24px 8px;
+             font-size: 56px; letter-spacing: .12em; word-spacing: .3em; font-weight: 700; }
+  .silabas { display: flex; gap: 12px; justify-content: center; }
+  .silabas span { min-width: 72px; min-height: 64px; display: grid; place-items: center; font-size: 30px; letter-spacing: .08em;
+                  border-radius: calc(var(--radio) / 1.5); background: var(--surface); border: 3px solid var(--primary); }
+  button { font: inherit; font-size: 22px; font-weight: 700; min-height: 64px; border: 0; border-radius: var(--radio);
+           background: var(--primary); color: var(--on-primary); cursor: pointer; }
+  .feedback { font-size: 20px; padding: 14px 16px; border-radius: calc(var(--radio) / 1.5); background: var(--ok-bg); }
+  .paleta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .paleta i { width: 40px; height: 40px; border-radius: 8px; border: 2px solid rgba(0,0,0,.15); }
+
+  .a { --bg:#FFF6E5; --surface:#FFE6BF; --text:#2B2340; --primary:#F08A5D; --on-primary:#2B2340; --ok-bg:#D4F1E4; --radio:28px; }
+  .b { --bg:#F3EDE2; --surface:#E4D8C2; --text:#1F2A30; --primary:#146B69; --on-primary:#FBF7F0; --ok-bg:#D9E8D0; --radio:14px; }
+  .c { --bg:#1A2230; --surface:#243042; --text:#EEF1F5; --primary:#3CE0C5; --on-primary:#1A2230; --ok-bg:#1F3D3F; --radio:8px; }
+</style>
+</head>
+<body>
+  <h1>Vista previa: estilo visual por tramo</h1>
+  <p class="nota">Letra Andika, palabras con espacio extra entre letras, sin blanco puro. Los colores son una primera propuesta.</p>
+  <div class="grid">
+    <section class="tramo a">
+      <h2>2°–3° básico · Explorar</h2>
+      <p class="sub">Redondo, cálido, con mascota</p>
+      <div class="palabra">casa</div>
+      <div class="silabas"><span>ca</span><span>sa</span></div>
+      <button>🔊 Escuchar</button>
+      <div class="feedback">¡Muy bien! <b>casa</b> tiene 2 sílabas: <b>ca – sa</b>.</div>
+      <div class="paleta"><i style="background:#FFF6E5"></i><i style="background:#FFE6BF"></i><i style="background:#F08A5D"></i><i style="background:#3BA99C"></i><i style="background:#F6C445"></i><i style="background:#7C5CC4"></i></div>
+    </section>
+    <section class="tramo b">
+      <h2>4°–5° básico · Aventura</h2>
+      <p class="sub">Expedición, ilustrado, tonos tierra</p>
+      <div class="palabra">brújula</div>
+      <div class="silabas"><span>brú</span><span>ju</span><span>la</span></div>
+      <button>🔊 Escuchar</button>
+      <div class="feedback">¡Bien hecho! Encontraste la sílaba trabada <b>brú</b>.</div>
+      <div class="paleta"><i style="background:#F3EDE2"></i><i style="background:#E4D8C2"></i><i style="background:#146B69"></i><i style="background:#C8743A"></i><i style="background:#6B8E4E"></i><i style="background:#2F4858"></i></div>
+    </section>
+    <section class="tramo c">
+      <h2>6°–7° básico · Estilo</h2>
+      <p class="sub">Plano, oscuro, acentos neón, sin elementos infantiles</p>
+      <div class="palabra">rampa</div>
+      <div class="silabas"><span>ram</span><span>pa</span></div>
+      <button>🔊 Escuchar</button>
+      <div class="feedback">Correcto: <b>ram – pa</b>. Racha x3 ⚡</div>
+      <div class="paleta"><i style="background:#1A2230"></i><i style="background:#243042"></i><i style="background:#3CE0C5"></i><i style="background:#FF5C8A"></i><i style="background:#8C7CFF"></i><i style="background:#EEF1F5"></i></div>
+    </section>
+  </div>
+</body>
+</html>

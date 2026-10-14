@@ -1,0 +1,368 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 3,
+  "titulo": "Palabras CV-CV frecuentes",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-03-casa",
+      "texto": "casa",
+      "silabas": [
+        "ca",
+        "sa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-mesa",
+      "texto": "mesa",
+      "silabas": [
+        "me",
+        "sa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-luna",
+      "texto": "luna",
+      "silabas": [
+        "lu",
+        "na"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-mano",
+      "texto": "mano",
+      "silabas": [
+        "ma",
+        "no"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-pato",
+      "texto": "pato",
+      "silabas": [
+        "pa",
+        "to"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-gato",
+      "texto": "gato",
+      "silabas": [
+        "ga",
+        "to"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-sapo",
+      "texto": "sapo",
+      "silabas": [
+        "sa",
+        "po"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-foca",
+      "texto": "foca",
+      "silabas": [
+        "fo",
+        "ca"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-vaca",
+      "texto": "vaca",
+      "silabas": [
+        "va",
+        "ca"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-dedo",
+      "texto": "dedo",
+      "silabas": [
+        "de",
+        "do"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-lobo",
+      "texto": "lobo",
+      "silabas": [
+        "lo",
+        "bo"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-mono",
+      "texto": "mono",
+      "silabas": [
+        "mo",
+        "no"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-rosa",
+      "texto": "rosa",
+      "silabas": [
+        "ro",
+        "sa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-pera",
+      "texto": "pera",
+      "silabas": [
+        "pe",
+        "ra"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-sopa",
+      "texto": "sopa",
+      "silabas": [
+        "so",
+        "pa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-taza",
+      "texto": "taza",
+      "silabas": [
+        "ta",
+        "za"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-cama",
+      "texto": "cama",
+      "silabas": [
+        "ca",
+        "ma"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-bota",
+      "texto": "bota",
+      "silabas": [
+        "bo",
+        "ta"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-nube",
+      "texto": "nube",
+      "silabas": [
+        "nu",
+        "be"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-papa",
+      "texto": "papa",
+      "silabas": [
+        "pa",
+        "pa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-pelo",
+      "texto": "pelo",
+      "silabas": [
+        "pe",
+        "lo"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-dado",
+      "texto": "dado",
+      "silabas": [
+        "da",
+        "do"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-lupa",
+      "texto": "lupa",
+      "silabas": [
+        "lu",
+        "pa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-pala",
+      "texto": "pala",
+      "silabas": [
+        "pa",
+        "la"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-mapa",
+      "texto": "mapa",
+      "silabas": [
+        "ma",
+        "pa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-cuna",
+      "texto": "cuna",
+      "silabas": [
+        "cu",
+        "na"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-foto",
+      "texto": "foto",
+      "silabas": [
+        "fo",
+        "to"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-ropa",
+      "texto": "ropa",
+      "silabas": [
+        "ro",
+        "pa"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-tiza",
+      "texto": "tiza",
+      "silabas": [
+        "ti",
+        "za"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-03-vela",
+      "texto": "vela",
+      "silabas": [
+        "ve",
+        "la"
+      ],
+      "estructura": "CV-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    }
+  ]
+}

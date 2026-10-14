@@ -1,0 +1,228 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 10,
+  "titulo": "Pseudopalabras con diptongos (CVV)",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-10-fuema",
+      "texto": "fuema",
+      "silabas": [
+        "fue",
+        "ma"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-tiela",
+      "texto": "tiela",
+      "silabas": [
+        "tie",
+        "la"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-piuso",
+      "texto": "piuso",
+      "silabas": [
+        "piu",
+        "so"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-mueto",
+      "texto": "mueto",
+      "silabas": [
+        "mue",
+        "to"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-daipo",
+      "texto": "daipo",
+      "silabas": [
+        "dai",
+        "po"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-seuna",
+      "texto": "seuna",
+      "silabas": [
+        "seu",
+        "na"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-cuapo",
+      "texto": "cuapo",
+      "silabas": [
+        "cua",
+        "po"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-neito",
+      "texto": "neito",
+      "silabas": [
+        "nei",
+        "to"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-tuepi",
+      "texto": "tuepi",
+      "silabas": [
+        "tue",
+        "pi"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-liafo",
+      "texto": "liafo",
+      "silabas": [
+        "lia",
+        "fo"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-boime",
+      "texto": "boime",
+      "silabas": [
+        "boi",
+        "me"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-fiena",
+      "texto": "fiena",
+      "silabas": [
+        "fie",
+        "na"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-ruami",
+      "texto": "ruami",
+      "silabas": [
+        "rua",
+        "mi"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-peila",
+      "texto": "peila",
+      "silabas": [
+        "pei",
+        "la"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-cauno",
+      "texto": "cauno",
+      "silabas": [
+        "cau",
+        "no"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-mioso",
+      "texto": "mioso",
+      "silabas": [
+        "mio",
+        "so"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-tauli",
+      "texto": "tauli",
+      "silabas": [
+        "tau",
+        "li"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-luefo",
+      "texto": "luefo",
+      "silabas": [
+        "lue",
+        "fo"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-siaro",
+      "texto": "siaro",
+      "silabas": [
+        "sia",
+        "ro"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-10-naupe",
+      "texto": "naupe",
+      "silabas": [
+        "nau",
+        "pe"
+      ],
+      "estructura": "CVV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    }
+  ]
+}

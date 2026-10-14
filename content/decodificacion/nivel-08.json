@@ -1,0 +1,228 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 8,
+  "titulo": "Pseudopalabras con sílabas trabadas (CCV)",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-08-flami",
+      "texto": "flami",
+      "silabas": [
+        "fla",
+        "mi"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-tropi",
+      "texto": "tropi",
+      "silabas": [
+        "tro",
+        "pi"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-plesu",
+      "texto": "plesu",
+      "silabas": [
+        "ple",
+        "su"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-brono",
+      "texto": "brono",
+      "silabas": [
+        "bro",
+        "no"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-glida",
+      "texto": "glida",
+      "silabas": [
+        "gli",
+        "da"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-crafe",
+      "texto": "crafe",
+      "silabas": [
+        "cra",
+        "fe"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-drumo",
+      "texto": "drumo",
+      "silabas": [
+        "dru",
+        "mo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-frise",
+      "texto": "frise",
+      "silabas": [
+        "fri",
+        "se"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-clupe",
+      "texto": "clupe",
+      "silabas": [
+        "clu",
+        "pe"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-grelo",
+      "texto": "grelo",
+      "silabas": [
+        "gre",
+        "lo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-prasi",
+      "texto": "prasi",
+      "silabas": [
+        "pra",
+        "si"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-blemo",
+      "texto": "blemo",
+      "silabas": [
+        "ble",
+        "mo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-trosa",
+      "texto": "trosa",
+      "silabas": [
+        "tro",
+        "sa"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-fluna",
+      "texto": "fluna",
+      "silabas": [
+        "flu",
+        "na"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-cribo",
+      "texto": "cribo",
+      "silabas": [
+        "cri",
+        "bo"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-drepa",
+      "texto": "drepa",
+      "silabas": [
+        "dre",
+        "pa"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-glano",
+      "texto": "glano",
+      "silabas": [
+        "gla",
+        "no"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-brisu",
+      "texto": "brisu",
+      "silabas": [
+        "bri",
+        "su"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-plota",
+      "texto": "plota",
+      "silabas": [
+        "plo",
+        "ta"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-08-fregu",
+      "texto": "fregu",
+      "silabas": [
+        "fre",
+        "gu"
+      ],
+      "estructura": "CCV-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 6,
+  "titulo": "Pseudopalabras con VC y CVC",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-06-sermo",
+      "texto": "sermo",
+      "silabas": [
+        "ser",
+        "mo"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-tolpa",
+      "texto": "tolpa",
+      "silabas": [
+        "tol",
+        "pa"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-carfe",
+      "texto": "carfe",
+      "silabas": [
+        "car",
+        "fe"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-purla",
+      "texto": "purla",
+      "silabas": [
+        "pur",
+        "la"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-lusmo",
+      "texto": "lusmo",
+      "silabas": [
+        "lus",
+        "mo"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-ferpa",
+      "texto": "ferpa",
+      "silabas": [
+        "fer",
+        "pa"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-golte",
+      "texto": "golte",
+      "silabas": [
+        "gol",
+        "te"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-nalsi",
+      "texto": "nalsi",
+      "silabas": [
+        "nal",
+        "si"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-dorpe",
+      "texto": "dorpe",
+      "silabas": [
+        "dor",
+        "pe"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-selbo",
+      "texto": "selbo",
+      "silabas": [
+        "sel",
+        "bo"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-marpo",
+      "texto": "marpo",
+      "silabas": [
+        "mar",
+        "po"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-tilse",
+      "texto": "tilse",
+      "silabas": [
+        "til",
+        "se"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-banfo",
+      "texto": "banfo",
+      "silabas": [
+        "ban",
+        "fo"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-pirgo",
+      "texto": "pirgo",
+      "silabas": [
+        "pir",
+        "go"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-sulda",
+      "texto": "sulda",
+      "silabas": [
+        "sul",
+        "da"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-mepos",
+      "texto": "mepos",
+      "silabas": [
+        "me",
+        "pos"
+      ],
+      "estructura": "CV-CVC",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-faltu",
+      "texto": "faltu",
+      "silabas": [
+        "fal",
+        "tu"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-corni",
+      "texto": "corni",
+      "silabas": [
+        "cor",
+        "ni"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-gusmo",
+      "texto": "gusmo",
+      "silabas": [
+        "gus",
+        "mo"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    },
+    {
+      "id": "dec-06-lerba",
+      "texto": "lerba",
+      "silabas": [
+        "ler",
+        "ba"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "pseudopalabra",
+      "revisado": false
+    }
+  ]
+}

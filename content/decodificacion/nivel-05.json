@@ -1,0 +1,357 @@
+{
+  "objetivo": "decodificacion",
+  "nivel": 5,
+  "titulo": "Palabras con VC y CVC",
+  "revisado": false,
+  "estimulos": [
+    {
+      "id": "dec-05-sol",
+      "texto": "sol",
+      "silabas": [
+        "sol"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-pan",
+      "texto": "pan",
+      "silabas": [
+        "pan"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-mar",
+      "texto": "mar",
+      "silabas": [
+        "mar"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-sal",
+      "texto": "sal",
+      "silabas": [
+        "sal"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-luz",
+      "texto": "luz",
+      "silabas": [
+        "luz"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-red",
+      "texto": "red",
+      "silabas": [
+        "red"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-pez",
+      "texto": "pez",
+      "silabas": [
+        "pez"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-col",
+      "texto": "col",
+      "silabas": [
+        "col"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-gol",
+      "texto": "gol",
+      "silabas": [
+        "gol"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-mil",
+      "texto": "mil",
+      "silabas": [
+        "mil"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-tos",
+      "texto": "tos",
+      "silabas": [
+        "tos"
+      ],
+      "estructura": "CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-árbol",
+      "texto": "árbol",
+      "silabas": [
+        "ár",
+        "bol"
+      ],
+      "estructura": "VC-CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-campo",
+      "texto": "campo",
+      "silabas": [
+        "cam",
+        "po"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-barco",
+      "texto": "barco",
+      "silabas": [
+        "bar",
+        "co"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-pasto",
+      "texto": "pasto",
+      "silabas": [
+        "pas",
+        "to"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-mosca",
+      "texto": "mosca",
+      "silabas": [
+        "mos",
+        "ca"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-lápiz",
+      "texto": "lápiz",
+      "silabas": [
+        "lá",
+        "piz"
+      ],
+      "estructura": "CV-CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-bolsa",
+      "texto": "bolsa",
+      "silabas": [
+        "bol",
+        "sa"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-carta",
+      "texto": "carta",
+      "silabas": [
+        "car",
+        "ta"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-perla",
+      "texto": "perla",
+      "silabas": [
+        "per",
+        "la"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-torta",
+      "texto": "torta",
+      "silabas": [
+        "tor",
+        "ta"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-isla",
+      "texto": "isla",
+      "silabas": [
+        "is",
+        "la"
+      ],
+      "estructura": "VC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-arco",
+      "texto": "arco",
+      "silabas": [
+        "ar",
+        "co"
+      ],
+      "estructura": "VC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-alto",
+      "texto": "alto",
+      "silabas": [
+        "al",
+        "to"
+      ],
+      "estructura": "VC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-cesta",
+      "texto": "cesta",
+      "silabas": [
+        "ces",
+        "ta"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-salto",
+      "texto": "salto",
+      "silabas": [
+        "sal",
+        "to"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-pulpo",
+      "texto": "pulpo",
+      "silabas": [
+        "pul",
+        "po"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-cerdo",
+      "texto": "cerdo",
+      "silabas": [
+        "cer",
+        "do"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-dulce",
+      "texto": "dulce",
+      "silabas": [
+        "dul",
+        "ce"
+      ],
+      "estructura": "CVC-CV",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    },
+    {
+      "id": "dec-05-tambor",
+      "texto": "tambor",
+      "silabas": [
+        "tam",
+        "bor"
+      ],
+      "estructura": "CVC-CVC",
+      "tipo": "palabra",
+      "frecuencia": "alta",
+      "revisado": false
+    }
+  ]
+}
