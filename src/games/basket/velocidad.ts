@@ -27,5 +27,5 @@ export const PELOTAS_POR_RONDA = 30;
 export const VIDAS_POR_RONDA = 3;
 export const PROPORCION_OBJETIVOS = 0.45;
 export const PROPORCION_OBJETIVOS_REFUERZO = 0.5;
-/** Encestar antes de este porcentaje del recorrido da una estrella rayo (bonus). */
-export const UMBRAL_RAYO = 0.45;
+/** Cada 5 encestadas seguidas sin error se gana una estrella rayo (bonus). */
+export const RACHA_RAYO = 5;

@@ -1,7 +1,6 @@
 # Fase 2: motor base, perfil del niño y Basket
 
-> Estado: **lista para que Fran la revise y apruebe**.
-> Lo marcado **[CONFIRMAR]** lo decidí yo como punto de partida. Se cambia fácil.
+> Estado: **lista para que Fran la pruebe y apruebe** (con sus respuestas del 13 oct ya incorporadas).
 
 ---
 
@@ -12,31 +11,33 @@
 | Nombre | **Ruta Lectora**, con el **Kiltro** como mascota ✅ |
 | Colores por tramo | Aprobados ✅ |
 | Escenario | Una cancha de básquet |
-| Mecánica | Caen pelotas con palabras. El niño encesta **solo las que cumplen la consigna** (ej. "las que tienen la letra o"). Hay **un aro** |
+| Mecánica | Caen pelotas con palabras y el niño **arrastra el aro** para atrapar solo las que cumplen la consigna (ej. "las que tienen la letra o") |
 | Dificultad | La **velocidad** |
-| Error | No pasa nada: **pierde una vida** |
+| Vidas | **3 por ronda.** Pierde una si atrapa una incorrecta o si deja pasar una correcta |
 | Retroalimentación | **Sin mensajes** |
-| Audio | **Sin audio**, porque la idea es que el niño lea |
-| Palabras | Aprobado que yo prepare las listas (quedan con `"revisado": false`) |
+| Audio | **Sin voz**, porque la idea es que el niño lea. Solo un "swish" sin derechos de autor al encestar |
+| Consignas | Aprobadas, incluida la de cantidad de sílabas ✅ |
+| Palabras | Listas de los niveles 1 a 11 revisadas y aprobadas ✅ |
 
 ### Qué cambia respecto del diseño original (`01-diseno.md`)
 
 - **Basket ahora trabaja decodificación (lectura por letra), no conciencia fonológica.** Como no hay audio, el niño tiene que leer la palabra. La conciencia fonológica, que depende del sonido, quedará en otro juego o en un modo con audio más adelante.
 - **En Basket la velocidad SÍ decide el nivel.** En el diseño general la velocidad era solo un bonus; para Basket manda esta decisión.
-- **Sin mensajes de retroalimentación ni audio en Basket.** La única respuesta es visual: la pelota entra al aro o se desvanece.
-- **Ojo para la Fase 4:** Basket quedó parecido a Crash ("tocar solo los correctos"). Cuando lleguemos a Crash conviene darle una mecánica distinta.
+- **Sin mensajes ni voz en Basket.** La respuesta es visual (la pelota entra o rebota), más el "swish" opcional.
+- Con el aro que se arrastra, Basket ya se diferencia de Crash (tocar estímulos en movimiento).
 
 ---
 
 ## Cómo se juega
 
-1. Aparece la consigna en grande, por ejemplo "Encesta las que tienen la letra **o**", y el niño aprieta **¡Vamos!**
-2. Las pelotas caen de a una, cada una con una palabra. La consigna queda siempre visible arriba.
-3. El niño **toca** una pelota y esta vuela al aro.
-   - Si cumple la consigna, entra y suma 1 encestada.
-   - Si no la cumple, se desvanece y pierde 1 de sus 3 vidas.
-   - Si deja pasar una correcta, no pierde vida, pero queda registrado como omisión.
-4. La ronda termina a las 30 pelotas o al perder las 3 vidas. Al final se muestran las encestadas y las estrellas rayo.
+1. Aparece la consigna en grande, por ejemplo "Encesta las que tienen la letra **o**", con la indicación "👆 Arrastra el aro". El niño aprieta **¡Vamos!**
+2. Caen pelotas con palabras. La consigna queda siempre visible arriba.
+3. Abajo hay un aro con tablero, sobre ruedas. El niño lo **arrastra** a izquierda y derecha con el dedo o con el mouse. En el Mac también sirven las flechas del teclado.
+   - **Atrapa una correcta:** entra al aro, suma 1 encestada y suena un "swish" suave.
+   - **Atrapa una incorrecta:** rebota en el aro y pierde 1 vida.
+   - **Deja pasar una correcta:** pierde 1 vida.
+   - **Deja pasar una incorrecta:** muy bien, no pasa nada.
+4. Hay **3 vidas**. La ronda termina a las 30 pelotas o al perder las 3 vidas. Al final se muestran las encestadas y las estrellas rayo.
 
 ### Las consignas
 
@@ -50,19 +51,27 @@ Se arman solas a partir de la lista de palabras del nivel del niño:
 Se juzga **por letra**: "árbol" tiene la letra *a*. Las palabras que podrían confundir no salen en esa ronda. Por ejemplo, para la letra *c* no sale "chancho" (ch); para la *u* no sale "queso"; para la *l* no sale "grillo" (ll); para "empieza con u" no sale "huevo".
 El texto de cada consigna se puede editar en `content/basket/consignas.json`.
 
+### Sonido
+
+- El único sonido es el **"swish" al encestar**. No hay voz ni sonido de error.
+- El sonido **se genera con código** en el momento; no es un archivo grabado. Por eso no tiene derechos de autor y funciona igual en el Mac, el iPad y el iPhone, incluso sin internet.
+- Se puede **apagar por niño** en la zona de adulto.
+- En iPad y iPhone no suena si el aparato está en modo silencio.
+
 ---
 
 ## Velocidad y nivel
 
 - Hay **10 velocidades**. En la 1, cada pelota tarda 9 segundos en cruzar la pantalla y cae una cada 2,8 s. En la 10, tarda 3,4 s y cae una cada 1,3 s.
-- Se aplica la regla del diseño en **bloques de 10 pelotas**. Cada pelota cuenta como una respuesta: encestar una correcta, dejar pasar una incorrecta, tocar una incorrecta o dejar pasar una correcta.
+- Se aplica la regla del diseño en **bloques de 10 pelotas**. Cada pelota cuenta como una respuesta: atraparla si era correcta o dejarla pasar si era incorrecta es un acierto.
   - **80 % o más:** sube una velocidad.
   - **60–79 %:** se mantiene.
   - **Menos de 60 %:** bloque de refuerzo, todo un 25 % más lento. Si en el refuerzo vuelve a bajar de 60 %, baja una velocidad.
-- La velocidad cambia **durante la ronda**: las pelotas siguientes ya caen más rápido o más lento.
-- **Las palabras no cambian solas.** El nivel de lectura (niveles 1 a 11 de decodificación) lo fija Fran en el perfil. Cuando exista la evaluación inicial (Fase 5) se podrá proponer automáticamente.
-- Desde la zona de adulto se puede **fijar la velocidad** para que no suba ni baje, y cambiar el tamaño del bloque.
-- **Estrellas rayo:** encestar una correcta en la primera mitad de su caída (antes del 45 % del recorrido) da una estrella rayo. Es solo un bonus.
+- La velocidad cambia **durante la ronda**.
+- **Las palabras no cambian solas.** El nivel de lectura (niveles 1 a 11) lo fija Fran en el perfil.
+- Desde la zona de adulto se puede **fijar la velocidad** y cambiar el tamaño del bloque.
+- **Estrellas rayo:** cada 5 encestadas seguidas sin error se gana una. Es solo un bonus.
+- Con esta mecánica ya no se mide el tiempo de reacción, porque el ritmo lo marca la caída. Se guarda si atrapó o dejó pasar cada pelota.
 
 ---
 
@@ -96,21 +105,15 @@ Las listas están en `content/decodificacion/nivel-01.json` a `nivel-11.json`. M
 
 ---
 
-## Puntos para confirmar con Fran **[CONFIRMAR]**
+## Pendiente
 
-1. **Tocar en vez de arrastrar:** el niño toca la pelota y esta vuela sola al aro. Con pelotas que caen rápido, tocar es más justo que arrastrar. ¿Está bien?
-2. **3 vidas** por ronda, y la ronda dura **30 pelotas**. ¿Está bien, o prefiere otra cantidad?
-3. **Dejar pasar una correcta no quita vida**, pero cuenta como error para subir o bajar. ¿O debería quitar vida también?
-4. **Sin ningún sonido**, ni siquiera el "swish" al encestar. ¿O un sonido suave de acierto (que se puede apagar) sí?
-5. **Texto de las consignas:** "Encesta las que tienen la letra ___". ¿Lo cambiaría (por ejemplo "Mete al aro las que…")?
-6. **Las consignas por cantidad de sílabas** ("tienen 3 sílabas") son más de conciencia silábica que de lectura. ¿Se dejan o se quitan?
-7. **Revisar las listas de palabras** de los niveles 1 a 11.
+- En las listas de palabras, Fran aprobó el contenido. El campo `"revisado"` se pasará a `true` con el editor de contenido (Fase 6) o cuando ella lo indique.
 
 ---
 
 ## Cómo probarla
 
-**En el computador de Gonza:** `npm run dev` y abrir http://localhost:5173.
+**En el computador de Gonza:** doble clic en `iniciar.cmd` (abre el navegador solo), o en la terminal `npm.cmd run dev` y abrir http://localhost:5173.
 
 **En el iPad:**
 - Con el computador y el iPad en el mismo wifi, se abre en Safari la dirección `http://192.168.x.x:5173` que muestra `npm run dev`.
@@ -122,4 +125,4 @@ Las listas están en `content/decodificacion/nivel-01.json` a `nivel-11.json`. M
 3. Crear otro perfil de 5° y uno de 7° para ver los tres estilos.
 4. Volver a la zona de adulto y revisar el historial de rondas.
 
-**Qué mirar:** ¿se leen bien las palabras? ¿La velocidad inicial es lo bastante lenta para un niño que recién empieza? ¿Las consignas se entienden sin audio?
+**Qué mirar:** ¿se leen bien las palabras? ¿Es cómodo arrastrar el aro en el iPad? ¿La velocidad 1 es lo bastante lenta para un niño que recién empieza?

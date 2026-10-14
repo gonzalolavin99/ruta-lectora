@@ -1,40 +1,50 @@
-// Basket: caen pelotas con palabras. El niño toca las que cumplen la consigna
-// y la pelota vuela al aro. Sin audio ni mensajes: el niño lee.
-//   - Toca una correcta → encesta (+1).
-//   - Toca una incorrecta → pierde una vida (sin sonido ni mensaje de error).
-//   - Deja pasar una correcta → no pierde vida; queda registrado como omisión.
+// Basket: caen pelotas con palabras y el niño ARRASTRA el aro para atraparlas.
+// Sin mensajes ni voz: el niño lee. (Decisiones de Fran, Fase 2.)
+//   - Atrapa una correcta     → encesta (+1, "swish" si el sonido está activo).
+//   - Atrapa una incorrecta   → rebota en el aro y pierde una vida.
+//   - Deja pasar una correcta → pierde una vida.
+//   - Deja pasar una incorrecta → bien hecho, no pasa nada.
 
 import Phaser from 'phaser';
+import { sonarSwish } from '../../audio/efectos';
 import type { ColoresCancha } from '../../ui/tema';
 import type { ItemCola } from './reglas';
-import { UMBRAL_RAYO, type ParametrosVelocidad } from './velocidad';
+import { RACHA_RAYO, type ParametrosVelocidad } from './velocidad';
 
 export const ANCHO = 1280;
 export const ALTO = 860;
 
-const ARO = { x: 1080, y: 330, ancho: 136, alto: 30 };
-const CARRILES = [165, 395, 625, 850];
+const ARO = { y: 690, ancho: 210, alto: 40 };
+const TABLERO = { ancho: 300, alto: 170 };
+const CARRILES = [170, 405, 640, 875, 1110];
 const RADIO_BOLA = 58;
 const Y_INICIO = -90;
 const Y_FIN = ALTO + 90;
+const VELOCIDAD_TECLADO = 0.9; // px por ms con las flechas (opcional en el Mac)
 
 export interface Decision {
   item: ItemCola;
-  tocada: boolean;
+  atrapada: boolean;
   correcta: boolean;
-  tiempoMs: number | null;
   rayo: boolean;
+}
+
+export interface Marcador {
+  vidas: number;
+  encestadas: number;
+  estrellas: number;
 }
 
 export interface ConfigBasket {
   colores: ColoresCancha;
   familiaFuente: string;
+  sonido: boolean;
   cola: ItemCola[];
   vidas: number;
   parametros: () => ParametrosVelocidad;
   alDecidir: (d: Decision) => void;
-  alCambiarMarcador: (m: { vidas: number; encestadas: number; estrellas: number }) => void;
-  alTerminar: (m: { vidas: number; encestadas: number; estrellas: number }) => void;
+  alCambiarMarcador: (m: Marcador) => void;
+  alTerminar: (m: Marcador) => void;
 }
 
 interface Bola {
@@ -42,9 +52,8 @@ interface Bola {
   contenedor: Phaser.GameObjects.Container;
   etiqueta: Phaser.GameObjects.Container;
   velocidad: number; // px por ms
-  nacio: number;
-  caidaMs: number;
-  resuelta: boolean;
+  resuelta: boolean; // ya se decidió (atrapada o pasó el aro)
+  animando: boolean; // la mueve una animación, no la caída
 }
 
 const color = (hex: string) => Phaser.Display.Color.HexStringToColor(hex).color;
@@ -54,14 +63,19 @@ export class BasketScene extends Phaser.Scene {
   private bolas: Bola[] = [];
   private indice = 0;
   private espera = 0;
-  private reloj = 0;
   private ultimoCarril = -1;
   private vidas = 0;
   private encestadas = 0;
   private estrellas = 0;
+  private racha = 0;
   private jugando = false;
   private terminado = false;
+  private aroX = ANCHO / 2;
+  private aroAtras!: Phaser.GameObjects.Container;
+  private aroFrente!: Phaser.GameObjects.Container;
   private red!: Phaser.GameObjects.Graphics;
+  private pista!: Phaser.GameObjects.Container;
+  private flechas?: Phaser.Types.Input.Keyboard.CursorKeys;
 
   constructor(cfg: ConfigBasket) {
     super('basket');
@@ -71,19 +85,29 @@ export class BasketScene extends Phaser.Scene {
 
   create() {
     this.dibujarCancha();
-    this.dibujarAro();
+    this.crearAro();
     this.crearTexturaBola();
+    this.crearPista();
+
+    // Arrastrar: el aro sigue al dedo (o al mouse con el botón apretado).
+    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => this.moverAro(p.x));
+    this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+      if (p.isDown) this.moverAro(p.x);
+    });
+    this.flechas = this.input.keyboard?.createCursorKeys();
   }
 
   /** Lo llama React cuando el niño aprieta "¡Vamos!". */
   empezar() {
     this.jugando = true;
-    this.espera = 400;
+    this.espera = 600;
   }
 
   update(_t: number, dt: number) {
     if (!this.jugando || this.terminado) return;
-    this.reloj += dt;
+
+    if (this.flechas?.left.isDown) this.moverAro(this.aroX - VELOCIDAD_TECLADO * dt);
+    if (this.flechas?.right.isDown) this.moverAro(this.aroX + VELOCIDAD_TECLADO * dt);
 
     this.espera -= dt;
     if (this.espera <= 0 && this.indice < this.cfg.cola.length) {
@@ -93,23 +117,37 @@ export class BasketScene extends Phaser.Scene {
     }
 
     for (const b of this.bolas) {
-      if (b.resuelta) continue;
+      if (b.animando) continue;
+      const antes = b.contenedor.y;
       b.contenedor.y += b.velocidad * dt;
-      if (b.contenedor.y > Y_FIN) {
-        this.resolver(b, false);
-        b.contenedor.destroy();
-      }
+      // ¿Cruzó la altura del aro en este cuadro?
+      if (!b.resuelta && antes < ARO.y && b.contenedor.y >= ARO.y) this.cruzarAro(b);
+      if (b.contenedor.y > Y_FIN) b.contenedor.destroy();
     }
     this.bolas = this.bolas.filter((b) => b.contenedor.active);
 
     if (this.indice >= this.cfg.cola.length && this.bolas.length === 0) this.terminar();
   }
 
+  // ---------- aro ----------
+
+  private moverAro(x: number) {
+    if (this.terminado) return;
+    const margen = TABLERO.ancho / 2 + 6;
+    this.aroX = Phaser.Math.Clamp(x, margen, ANCHO - margen);
+    this.aroAtras.x = this.aroX;
+    this.aroFrente.x = this.aroX;
+    if (this.pista.visible && this.jugando) {
+      this.tweens.add({ targets: this.pista, alpha: 0, duration: 300, onComplete: () => this.pista.setVisible(false) });
+    }
+    this.pista.x = this.aroX;
+  }
+
   // ---------- pelotas ----------
 
   private lanzarBola(item: ItemCola, p: ParametrosVelocidad) {
     let carril = Phaser.Math.Between(0, CARRILES.length - 1);
-    if (carril === this.ultimoCarril) carril = (carril + 1 + Phaser.Math.Between(0, 2)) % CARRILES.length;
+    if (carril === this.ultimoCarril) carril = (carril + Phaser.Math.Between(1, CARRILES.length - 1)) % CARRILES.length;
     this.ultimoCarril = carril;
 
     const c = this.cfg.colores;
@@ -131,98 +169,95 @@ export class BasketScene extends Phaser.Scene {
     fondo.lineStyle(4, color(c.etiquetaBorde), 1);
     fondo.strokeRoundedRect(-anchoEtiqueta / 2, -38, anchoEtiqueta, 76, 20);
     const etiqueta = this.add.container(0, 0, [fondo, texto]);
-
     const contenedor = this.add.container(CARRILES[carril], Y_INICIO, [imagen, etiqueta]).setDepth(5);
-    const anchoToque = Math.max(anchoEtiqueta, RADIO_BOLA * 2) + 16;
-    contenedor.setSize(anchoToque, RADIO_BOLA * 2 + 24);
-    contenedor.setInteractive({ useHandCursor: true });
 
-    const bola: Bola = {
+    this.bolas.push({
       item,
       contenedor,
       etiqueta,
       velocidad: (Y_FIN - Y_INICIO) / p.caidaMs,
-      nacio: this.reloj,
-      caidaMs: p.caidaMs,
       resuelta: false,
-    };
-    contenedor.on('pointerdown', () => this.tocar(bola));
-    this.bolas.push(bola);
-  }
-
-  private tocar(b: Bola) {
-    if (b.resuelta || this.terminado) return;
-    b.contenedor.disableInteractive();
-    if (b.item.esObjetivo) this.encestar(b);
-    else this.fallar(b);
-  }
-
-  private resolver(b: Bola, tocada: boolean) {
-    if (b.resuelta) return;
-    b.resuelta = true;
-    const tiempoMs = tocada ? Math.round(this.reloj - b.nacio) : null;
-    const correcta = tocada === b.item.esObjetivo;
-    const rayo = tocada && correcta && tiempoMs !== null && tiempoMs < b.caidaMs * UMBRAL_RAYO;
-    if (rayo) this.estrellas++;
-    this.cfg.alDecidir({ item: b.item, tocada, correcta, tiempoMs, rayo });
-    if (rayo) this.mostrarRayo();
-  }
-
-  private encestar(b: Bola) {
-    this.resolver(b, true);
-    const { contenedor } = b;
-    const desde = new Phaser.Math.Vector2(contenedor.x, contenedor.y);
-    const hasta = new Phaser.Math.Vector2(ARO.x, ARO.y - 40);
-    const control = new Phaser.Math.Vector2((desde.x + hasta.x) / 2, Math.min(desde.y, hasta.y) - 240);
-    const curva = new Phaser.Curves.QuadraticBezier(desde, control, hasta);
-
-    this.tweens.add({ targets: b.etiqueta, alpha: 0, duration: 180 });
-    this.tweens.add({ targets: contenedor, scale: 0.72, duration: 520 });
-    this.tweens.addCounter({
-      from: 0,
-      to: 1,
-      duration: 520,
-      ease: 'Sine.easeInOut',
-      onUpdate: (tw) => {
-        const punto = curva.getPoint(tw.getValue() ?? 0);
-        contenedor.setPosition(punto.x, punto.y);
-      },
-      onComplete: () => {
-        this.encestadas++;
-        this.avisarMarcador();
-        this.agitarRed();
-        this.tweens.add({
-          targets: contenedor,
-          y: ARO.y + 110,
-          alpha: 0,
-          duration: 380,
-          ease: 'Quad.easeIn',
-          onComplete: () => contenedor.destroy(),
-        });
-      },
+      animando: false,
     });
   }
 
-  private fallar(b: Bola) {
-    this.resolver(b, true);
-    this.vidas = Math.max(0, this.vidas - 1);
+  private cruzarAro(b: Bola) {
+    b.resuelta = true;
+    const atrapada = Math.abs(b.contenedor.x - this.aroX) <= ARO.ancho / 2;
+    const correcta = atrapada === b.item.esObjetivo;
+
+    let rayo = false;
+    if (atrapada && correcta) {
+      this.racha++;
+      if (this.racha % RACHA_RAYO === 0) {
+        rayo = true;
+        this.estrellas++;
+      }
+    } else if (!correcta) {
+      this.racha = 0;
+    }
+    this.cfg.alDecidir({ item: b.item, atrapada, correcta, rayo });
+
+    if (atrapada && correcta) this.encestar(b, rayo);
+    else if (atrapada) this.rebotar(b);
+    else if (!correcta) this.dejarPasarCorrecta(b);
+    // Incorrecta que pasa de largo: sigue cayendo, no pasa nada.
+  }
+
+  private encestar(b: Bola, rayo: boolean) {
+    b.animando = true;
+    const { contenedor } = b;
+    contenedor.setDepth(7); // pasa por detrás del frente del aro
+    this.encestadas++;
     this.avisarMarcador();
+    if (this.cfg.sonido) sonarSwish();
+    this.agitarRed();
+    if (rayo) this.mostrarRayo();
+    this.tweens.add({ targets: b.etiqueta, alpha: 0, duration: 150 });
+    this.tweens.add({
+      targets: contenedor,
+      x: this.aroX,
+      y: ARO.y + 120,
+      scale: 0.7,
+      alpha: 0,
+      duration: 420,
+      ease: 'Quad.easeIn',
+      onComplete: () => contenedor.destroy(),
+    });
+  }
+
+  private rebotar(b: Bola) {
+    b.animando = true;
+    this.perderVida();
+    const lado = b.contenedor.x < this.aroX ? -1 : 1;
     this.tweens.add({
       targets: b.contenedor,
-      x: b.contenedor.x + 10,
-      duration: 60,
-      yoyo: true,
-      repeat: 2,
+      x: b.contenedor.x + lado * 160,
+      y: ARO.y - 110,
+      angle: lado * 25,
+      duration: 380,
+      ease: 'Quad.easeOut',
       onComplete: () => {
         this.tweens.add({
           targets: b.contenedor,
+          y: ALTO + 100,
           alpha: 0,
-          scale: 0.85,
-          duration: 300,
+          duration: 500,
+          ease: 'Quad.easeIn',
           onComplete: () => b.contenedor.destroy(),
         });
       },
     });
+  }
+
+  private dejarPasarCorrecta(b: Bola) {
+    this.perderVida();
+    this.tweens.add({ targets: b.contenedor, alpha: 0.25, duration: 300 });
+  }
+
+  private perderVida() {
+    this.vidas = Math.max(0, this.vidas - 1);
+    this.avisarMarcador();
     if (this.vidas === 0) this.time.delayedCall(700, () => this.terminar());
   }
 
@@ -230,26 +265,27 @@ export class BasketScene extends Phaser.Scene {
     if (this.terminado) return;
     this.terminado = true;
     for (const b of this.bolas) {
-      b.resuelta = true;
-      b.contenedor.disableInteractive();
+      b.animando = true;
       this.tweens.add({ targets: b.contenedor, alpha: 0, duration: 300 });
     }
-    this.time.delayedCall(500, () =>
-      this.cfg.alTerminar({ vidas: this.vidas, encestadas: this.encestadas, estrellas: this.estrellas }),
-    );
+    this.time.delayedCall(500, () => this.cfg.alTerminar(this.marcador()));
+  }
+
+  private marcador(): Marcador {
+    return { vidas: this.vidas, encestadas: this.encestadas, estrellas: this.estrellas };
   }
 
   private avisarMarcador() {
-    this.cfg.alCambiarMarcador({ vidas: this.vidas, encestadas: this.encestadas, estrellas: this.estrellas });
+    this.cfg.alCambiarMarcador(this.marcador());
   }
 
   private mostrarRayo() {
-    const t = this.add.text(ARO.x - 10, ARO.y - 110, '⚡', { fontSize: '56px' }).setOrigin(0.5).setDepth(20);
-    this.tweens.add({ targets: t, y: t.y - 70, alpha: 0, duration: 900, onComplete: () => t.destroy() });
+    const t = this.add.text(this.aroX, ARO.y - 150, '⚡', { fontSize: '64px' }).setOrigin(0.5).setDepth(20);
+    this.tweens.add({ targets: t, y: t.y - 80, alpha: 0, duration: 900, onComplete: () => t.destroy() });
   }
 
   private agitarRed() {
-    this.tweens.add({ targets: this.red, scaleY: 1.3, scaleX: 0.9, duration: 120, yoyo: true, ease: 'Sine.easeOut' });
+    this.tweens.add({ targets: this.red, scaleY: 1.3, scaleX: 0.88, duration: 120, yoyo: true, ease: 'Sine.easeOut' });
   }
 
   // ---------- dibujo ----------
@@ -277,7 +313,7 @@ export class BasketScene extends Phaser.Scene {
   private dibujarCancha() {
     const c = this.cfg.colores;
     const g = this.add.graphics();
-    const piso = 640;
+    const piso = 600;
 
     // Pared del gimnasio con franjas suaves
     g.fillStyle(color(c.pared), 1);
@@ -291,43 +327,39 @@ export class BasketScene extends Phaser.Scene {
     g.lineStyle(2, color(c.pisoLinea), 1);
     for (let y = piso + 36; y < ALTO; y += 44) g.lineBetween(0, y, ANCHO, y);
 
-    // Líneas de la cancha (vista en perspectiva)
+    // Líneas de la cancha
     g.lineStyle(6, color(c.lineas), 0.95);
     g.lineBetween(0, piso + 8, ANCHO, piso + 8);
-    g.strokeEllipse(ANCHO * 0.36, piso + 110, 420, 120);
-    g.beginPath();
-    g.arc(ANCHO + 40, piso + 120, 560, Math.PI * 0.94, Math.PI * 1.06);
-    g.strokePath();
-    g.strokeRect(ANCHO - 330, piso + 30, 360, 170);
+    g.strokeEllipse(ANCHO / 2, piso + 150, 520, 150);
+    g.lineBetween(ANCHO / 2, piso + 8, ANCHO / 2, ALTO);
   }
 
-  private dibujarAro() {
+  private crearAro() {
     const c = this.cfg.colores;
-    const g = this.add.graphics().setDepth(1);
 
-    // Poste y brazo
-    g.fillStyle(color(c.poste), 1);
-    g.fillRect(1222, 240, 22, ALTO - 240);
-    g.fillRect(1180, 252, 52, 16);
+    // Atrás (por detrás de las pelotas): tablero y poste con ruedas.
+    const atras = this.add.graphics();
+    atras.fillStyle(color(c.poste), 1);
+    atras.fillRect(-9, -20, 18, ALTO - ARO.y + 20);
+    atras.fillRoundedRect(-70, ALTO - ARO.y - 34, 140, 22, 8);
+    const tx = -TABLERO.ancho / 2;
+    const ty = -TABLERO.alto + 20;
+    atras.fillStyle(color(c.tablero), 1);
+    atras.fillRoundedRect(tx, ty, TABLERO.ancho, TABLERO.alto, 12);
+    atras.lineStyle(6, color(c.tableroBorde), 1);
+    atras.strokeRoundedRect(tx, ty, TABLERO.ancho, TABLERO.alto, 12);
+    atras.lineStyle(5, color(c.aro), 1);
+    atras.strokeRect(-55, -78, 110, 74);
+    this.aroAtras = this.add.container(this.aroX, ARO.y, [atras]).setDepth(3);
 
-    // Tablero (de lado)
-    g.fillStyle(color(c.tablero), 1);
-    g.fillRoundedRect(1162, 180, 22, 200, 6);
-    g.lineStyle(4, color(c.tableroBorde), 1);
-    g.strokeRoundedRect(1162, 180, 22, 200, 6);
-
-    // Soporte del aro
-    g.fillStyle(color(c.aro), 1);
-    g.fillRect(ARO.x + ARO.ancho / 2 - 6, ARO.y - 5, 1162 - (ARO.x + ARO.ancho / 2) + 6, 10);
-
-    // Red (se agita al encestar)
-    this.red = this.add.graphics({ x: ARO.x, y: ARO.y }).setDepth(9);
+    // Adelante (por delante de las pelotas): red y aro.
+    this.red = this.add.graphics();
     this.red.lineStyle(3, color(c.red), 0.9);
     const arriba = ARO.ancho / 2;
     const abajo = arriba * 0.55;
-    const largo = 95;
-    for (let i = 0; i <= 6; i++) {
-      const t = i / 6;
+    const largo = 100;
+    for (let i = 0; i <= 8; i++) {
+      const t = i / 8;
       this.red.lineBetween(-arriba + 2 * arriba * t, 0, -abajo + 2 * abajo * t, largo);
     }
     for (let j = 1; j <= 3; j++) {
@@ -335,10 +367,20 @@ export class BasketScene extends Phaser.Scene {
       const a = arriba - (arriba - abajo) * (j / 3);
       this.red.lineBetween(-a, y, a, y);
     }
+    const aro = this.add.graphics();
+    aro.lineStyle(10, color(c.aro), 1);
+    aro.strokeEllipse(0, 0, ARO.ancho, ARO.alto);
+    this.aroFrente = this.add.container(this.aroX, ARO.y, [this.red, aro]).setDepth(10);
+  }
 
-    // Mitad de adelante del aro (por delante de la pelota)
-    const frente = this.add.graphics().setDepth(10);
-    frente.lineStyle(8, color(c.aro), 1);
-    frente.strokeEllipse(ARO.x, ARO.y, ARO.ancho, ARO.alto);
+  /** Flechas ◀ ▶ junto al aro que muestran que se puede arrastrar. Se van al moverlo. */
+  private crearPista() {
+    const c = this.cfg.colores;
+    const estilo = { fontSize: '64px', fontStyle: 'bold', color: c.etiquetaBorde };
+    const izq = this.add.text(-TABLERO.ancho / 2 - 50, -40, '◀', estilo).setOrigin(0.5);
+    const der = this.add.text(TABLERO.ancho / 2 + 50, -40, '▶', estilo).setOrigin(0.5);
+    this.pista = this.add.container(this.aroX, ARO.y, [izq, der]).setDepth(11);
+    this.tweens.add({ targets: izq, x: izq.x - 14, duration: 500, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    this.tweens.add({ targets: der, x: der.x + 14, duration: 500, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
   }
 }

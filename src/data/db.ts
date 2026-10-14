@@ -12,6 +12,7 @@ export interface Perfil {
   curso: number; // 2 a 7 → define el tramo (cómo se ve)
   nivelLectura: number; // nivel de decodificación → qué palabras salen
   fuente: Fuente;
+  sonido?: boolean; // "swish" al encestar; si falta, está activo
   tamanoBloque: number;
   basket: EstadoAdaptativo; // nivel = velocidad
   monedas: number;
@@ -29,9 +30,8 @@ export interface Respuesta {
   texto: string;
   regla: string;
   esObjetivo: boolean;
-  tocada: boolean;
+  atrapada: boolean; // la pelota cayó dentro del aro
   correcta: boolean;
-  tiempoMs: number | null;
   velocidad: number;
   refuerzo: boolean;
   nivelLectura: number;
@@ -99,6 +99,7 @@ export function perfilNuevo(alias: string, curso: number, nivelLectura: number):
     curso,
     nivelLectura,
     fuente: 'andika',
+    sonido: true,
     tamanoBloque: 10,
     basket: { nivel: 1, fijado: false, refuerzo: false, bloque: [] },
     monedas: 0,

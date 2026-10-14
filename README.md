@@ -28,7 +28,10 @@ Mascota: el **Kiltro**.
 
 ## Para programar (Gonza)
 
-Se necesita Node.js LTS.
+Se necesita Node.js LTS. **Lo más fácil en Windows: doble clic en `iniciar.cmd`.**
+
+En PowerShell, `npm` puede fallar con "la ejecución de scripts está deshabilitada". En ese caso
+usa `npm.cmd` en vez de `npm` (por ejemplo `npm.cmd run dev`).
 
 ```bash
 npm install        # la primera vez

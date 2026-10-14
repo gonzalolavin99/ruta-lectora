@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { activarSonido } from '../../audio/efectos';
 import { registrarRespuesta, type EstadoAdaptativo } from '../../engine/adaptativo';
 import { obtenerBanco } from '../../engine/contenido';
 import { db, nuevoId, type Perfil, type Respuesta } from '../../data/db';
@@ -113,9 +114,8 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
         texto: d.item.estimulo.texto,
         regla: reglaATexto(nuevaRegla),
         esObjetivo: d.item.esObjetivo,
-        tocada: d.tocada,
+        atrapada: d.atrapada,
         correcta: d.correcta,
-        tiempoMs: d.tiempoMs,
         velocidad: estadoAntes.nivel,
         refuerzo: estadoAntes.refuerzo,
         nivelLectura: perfil.nivelLectura,
@@ -133,6 +133,7 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
     const escena = new BasketScene({
       colores: tema.cancha,
       familiaFuente: familia,
+      sonido: perfil.sonido !== false,
       cola,
       vidas: VIDAS_POR_RONDA,
       parametros: () => parametros(estadoRef.current.nivel, estadoRef.current.refuerzo),
@@ -193,11 +194,13 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
   }, [fase, pausar]);
 
   const vamos = () => {
+    activarSonido();
     escenaRef.current?.empezar();
     setFase('jugando');
   };
 
   const seguir = () => {
+    activarSonido();
     juegoRef.current?.scene.resume('basket');
     setFase('jugando');
   };
@@ -241,6 +244,7 @@ export function BasketJuego({ perfil, tema, alSalir }: Props) {
         <div className="capa">
           <div className="tarjeta tarjeta-consigna">
             <Consigna regla={regla} grande />
+            <p className="pista-arrastrar"><span aria-hidden>👆</span> Arrastra el aro</p>
             <button className="boton boton-grande" onClick={vamos}>¡Vamos!</button>
           </div>
         </div>

@@ -113,6 +113,7 @@ function EditorPerfil({ perfil, alCerrar }: { perfil: Perfil | null; alCerrar: (
   const [fijado, setFijado] = useState(perfil?.basket.fijado ?? false);
   const [tamanoBloque, setTamanoBloque] = useState(perfil?.tamanoBloque ?? 10);
   const [fuente, setFuente] = useState<Fuente>(perfil?.fuente ?? 'andika');
+  const [sonido, setSonido] = useState(perfil?.sonido !== false);
   const [confirmarBorrar, setConfirmarBorrar] = useState(false);
 
   const guardar = async () => {
@@ -125,6 +126,7 @@ function EditorPerfil({ perfil, alCerrar }: { perfil: Perfil | null; alCerrar: (
       curso,
       nivelLectura,
       fuente,
+      sonido,
       tamanoBloque,
       basket: {
         nivel: velocidad,
@@ -208,6 +210,14 @@ function EditorPerfil({ perfil, alCerrar }: { perfil: Perfil | null; alCerrar: (
             <button className={fuente === 'andika' ? 'opcion activa' : 'opcion'} style={{ fontFamily: FAMILIA_FUENTE.andika }} onClick={() => setFuente('andika')}>Andika: casa</button>
             <button className={fuente === 'opendyslexic' ? 'opcion activa' : 'opcion'} style={{ fontFamily: FAMILIA_FUENTE.opendyslexic }} onClick={() => setFuente('opendyslexic')}>OpenDyslexic: casa</button>
           </div>
+        </div>
+
+        <div className="campo">
+          <span>Sonido</span>
+          <label className="casilla">
+            <input type="checkbox" checked={sonido} onChange={(e) => setSonido(e.target.checked)} />
+            "Swish" suave al encestar (en iPad no suena si está en modo silencio)
+          </label>
         </div>
 
         {perfil && <Historial perfilId={perfil.id} />}
