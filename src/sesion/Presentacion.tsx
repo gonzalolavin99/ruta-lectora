@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { Estimulo } from '../engine/contenido';
+import { PalabraColoreada } from '../ui/PalabraColoreada';
 
 interface Props {
   palabras: Estimulo[];
+  colorearLetras: boolean;
   alTerminar: () => void;
   alVolver: () => void;
 }
 
 // Antes del juego: el niño lee una por una las palabras de la ronda.
 // El juego es el premio por haberlas leído todas.
-export function Presentacion({ palabras, alTerminar, alVolver }: Props) {
+export function Presentacion({ palabras, colorearLetras, alTerminar, alVolver }: Props) {
   const [indice, setIndice] = useState(0);
   const [verSilabas, setVerSilabas] = useState(false);
   const palabra = palabras[indice];
@@ -57,9 +59,11 @@ export function Presentacion({ palabras, alTerminar, alVolver }: Props) {
         <button key={palabra.id} className="tarjeta-palabra" onClick={siguiente}>
           {verSilabas
             ? palabra.silabas.map((s, i) => (
-                <span key={i} className={i % 2 ? 'silaba silaba-b' : 'silaba silaba-a'}>{s}</span>
+                <span key={i} className={i % 2 ? 'silaba silaba-b' : 'silaba silaba-a'}>
+                  <PalabraColoreada texto={s} activo={colorearLetras} />
+                </span>
               ))
-            : palabra.texto}
+            : <PalabraColoreada texto={palabra.texto} activo={colorearLetras} />}
         </button>
         <div className="fila">
           <button className="boton boton-secundario boton-redondo" onClick={anterior} disabled={indice === 0} aria-label="Anterior">◀</button>

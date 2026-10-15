@@ -1,9 +1,10 @@
 import { guardarPreferencias, type Preferencias } from '../data/db';
+import { COLORES_LETRA } from '../ui/letras';
 import { FAMILIA_FUENTE } from '../ui/tema';
 
 // Ajustes de la fonoaudióloga (se guardan en este aparato).
 export function Ajustes({ preferencias, alCerrar }: { preferencias: Preferencias; alCerrar: () => void }) {
-  const { fuente, sonido } = preferencias;
+  const { fuente, sonido, colorearLetras } = preferencias;
   return (
     <div className="capa" onClick={alCerrar}>
       <div className="tarjeta ajustes" onClick={(e) => e.stopPropagation()}>
@@ -28,8 +29,15 @@ export function Ajustes({ preferencias, alCerrar }: { preferencias: Preferencias
           </div>
         </div>
         <label className="casilla">
+          <input type="checkbox" checked={colorearLetras} onChange={(e) => void guardarPreferencias({ colorearLetras: e.target.checked })} />
+          <span>
+            Colorear <span style={{ color: COLORES_LETRA.p }}>p</span>, <span style={{ color: COLORES_LETRA.b }}>b</span> y{' '}
+            <span style={{ color: COLORES_LETRA.d }}>d</span>
+          </span>
+        </label>
+        <label className="casilla">
           <input type="checkbox" checked={sonido} onChange={(e) => void guardarPreferencias({ sonido: e.target.checked })} />
-          Sonido al encestar
+          Sonido al acertar
         </label>
         <small>En iPad no suena si está en modo silencio.</small>
         <button className="boton" onClick={alCerrar}>Listo</button>

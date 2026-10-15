@@ -4,9 +4,9 @@
 
 export type Tramo = 'explorar' | 'aventura' | 'estilo';
 
-export const CURSOS = [1, 2, 3, 4, 5];
+export const CURSOS = [1, 2, 3, 4, 5, 6];
 
-/** 1°–2° Explorar, 3°–4° Aventura, 5° Estilo. */
+/** 1°–2° Explorar, 3°–4° Aventura, 5°–6° Estilo. */
 export function tramoDeCurso(curso: number): Tramo {
   if (curso <= 2) return 'explorar';
   if (curso <= 4) return 'aventura';
@@ -73,7 +73,7 @@ export const TEMAS: Record<Tramo, Tema> = {
     },
   },
   estilo: {
-    tramo: 'estilo', nombre: 'Estilo', cursos: '5° básico',
+    tramo: 'estilo', nombre: 'Estilo', cursos: '5°–6° básico',
     bg: '#EDE4FF', bgPuntos: '#D5C3FF', surface: CREMA, text: TINTA, ink: TINTA,
     primary: '#C6F432', onPrimary: TINTA, accent: '#FF4FA3', okBg: '#E4F8B8', radio: 14,
     cancha: {

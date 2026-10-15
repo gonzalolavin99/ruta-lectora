@@ -44,3 +44,21 @@ export function sonarSwish(): void {
   ruido.start(ahora);
   ruido.stop(ahora + duracion);
 }
+
+/** "Pop" de burbuja: un tono corto que baja rápido. */
+export function sonarPop(): void {
+  const ctx = contexto;
+  if (!ctx || ctx.state !== 'running') return;
+  const ahora = ctx.currentTime;
+  const tono = ctx.createOscillator();
+  tono.type = 'sine';
+  tono.frequency.setValueAtTime(880, ahora);
+  tono.frequency.exponentialRampToValueAtTime(220, ahora + 0.12);
+  const volumen = ctx.createGain();
+  volumen.gain.setValueAtTime(0.0001, ahora);
+  volumen.gain.exponentialRampToValueAtTime(0.4, ahora + 0.01);
+  volumen.gain.exponentialRampToValueAtTime(0.0001, ahora + 0.15);
+  tono.connect(volumen).connect(ctx.destination);
+  tono.start(ahora);
+  tono.stop(ahora + 0.16);
+}

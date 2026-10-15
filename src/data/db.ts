@@ -8,8 +8,9 @@ export type Fuente = 'andika' | 'opendyslexic';
 
 export interface Preferencias {
   fuente: Fuente;
-  sonido: boolean; // "swish" al encestar
-  velocidadPorCurso: Record<number, number>;
+  sonido: boolean; // efectos al acertar (swish, pop)
+  colorearLetras: boolean; // p roja, b azul, d verde
+  velocidades: Record<string, number>; // clave juego-curso, ej. basket-3
 }
 
 interface Ajuste {
@@ -30,7 +31,7 @@ db.version(1).stores({
 // Versión 2: se eliminan perfiles, respuestas y rondas.
 db.version(2).stores({ perfiles: null, respuestas: null, rondas: null, ajustes: 'clave' });
 
-export const PREFERENCIAS_INICIALES: Preferencias = { fuente: 'andika', sonido: true, velocidadPorCurso: {} };
+export const PREFERENCIAS_INICIALES: Preferencias = { fuente: 'andika', sonido: true, colorearLetras: true, velocidades: {} };
 
 export async function leerPreferencias(): Promise<Preferencias> {
   const fila = await db.ajustes.get('preferencias');
@@ -42,9 +43,11 @@ export async function guardarPreferencias(cambios: Partial<Preferencias>): Promi
   await db.ajustes.put({ clave: 'preferencias', valor: { ...actual, ...cambios } });
 }
 
-export async function guardarVelocidad(curso: number, velocidad: number): Promise<void> {
+export const claveVelocidad = (juego: string, curso: number) => `${juego}-${curso}`;
+
+export async function guardarVelocidad(juego: string, curso: number, velocidad: number): Promise<void> {
   const actual = await leerPreferencias();
-  await guardarPreferencias({ velocidadPorCurso: { ...actual.velocidadPorCurso, [curso]: velocidad } });
+  await guardarPreferencias({ velocidades: { ...actual.velocidades, [claveVelocidad(juego, curso)]: velocidad } });
 }
 
 /** Pide al navegador que no borre los datos cuando falte espacio (importante en Safari/iPad). */

@@ -166,12 +166,99 @@ button:disabled { opacity: .4; cursor: default; }
   box-shadow: 10px 12px 0 var(--ink);
   animation: aparecer .25s ease-out;
 }
-.silaba { padding: 0 .08em; }
-.silaba-a { color: var(--ink); }
-.silaba-b { color: #C2185B; }
-.silaba + .silaba { margin-left: .25em; }
+.silaba { padding: 0 .1em; border-radius: .18em; }
+.silaba-a { background: var(--bg); }
+.silaba-b { background: var(--bg-puntos); }
+.silaba + .silaba { margin-left: .2em; }
 .boton-redondo { width: 84px; min-height: 84px; padding: 0; font-size: 30px; }
 @keyframes aparecer { from { transform: scale(.92) rotate(-2deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- elegir juego ---------- */
+
+.juegos { display: flex; gap: 32px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.tarjeta-juego {
+  width: 260px; height: 270px;
+  border: var(--borde); border-radius: calc(var(--radio) + 12px);
+  background: var(--primary); color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: var(--sombra); transition: transform .08s, box-shadow .08s;
+}
+.tarjeta-juego:active { transform: translate(5px, 6px); box-shadow: none; }
+.tarjeta-juego-icono { font-size: 96px; line-height: 1; }
+.tarjeta-juego-nombre { font-family: var(--fuente-titulo); font-size: 40px; font-weight: 700; }
+.tarjeta-juego-como { font-size: 18px; font-weight: 700; }
+
+/* ---------- Turbo ---------- */
+
+.turbo-escena {
+  flex: 1; min-height: 0; position: relative;
+  display: flex; flex-direction: column;
+  background: var(--bg);
+}
+.turbo-centro { flex: 1; display: grid; place-items: center; padding: 16px; }
+.turbo-palabra {
+  min-width: min(640px, 86vw); min-height: 240px; padding: 16px 48px;
+  display: grid; place-items: center;
+  border: var(--borde); border-radius: 40px; background: var(--surface); color: var(--ink);
+  font-size: clamp(64px, 10vw, 120px); font-weight: 700; letter-spacing: .12em;
+  box-shadow: 10px 12px 0 var(--ink);
+  animation: aparecer .2s ease-out;
+}
+.turbo-palabra.tapada {
+  color: var(--ink); font-family: var(--fuente-titulo) !important;
+  background: repeating-linear-gradient(45deg, var(--primary) 0 22px, var(--surface) 22px 44px);
+}
+.turbo-opciones { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.turbo-opcion {
+  min-width: 240px; min-height: 140px; padding: 12px 28px;
+  border: var(--borde); border-radius: 32px; background: var(--surface); color: var(--ink);
+  font-size: 56px; font-weight: 700; letter-spacing: .1em;
+  box-shadow: var(--sombra); transition: transform .08s, opacity .2s;
+}
+.turbo-opcion:active { transform: translate(5px, 6px); box-shadow: none; }
+.turbo-opcion.correcta { background: var(--ok-bg); outline: 6px solid #15803D; outline-offset: 3px; }
+.turbo-opcion.elegida { opacity: .45; }
+.turbo-opcion.apagada { opacity: .3; }
+
+.pista { flex: none; padding: 0 24px 24px; }
+.pista-camino {
+  position: relative; height: 130px;
+  border: var(--borde); border-radius: 28px;
+  background-image:
+    repeating-linear-gradient(90deg, var(--surface) 0 34px, transparent 34px 68px);
+  background-size: 100% 8px;
+  background-position: 0 61px;
+  background-repeat: no-repeat;
+  background-color: #5B5675;
+  box-shadow: var(--sombra);
+}
+.pista-meta {
+  position: absolute; right: 18px; top: 0; bottom: 0; width: 36px;
+  background: repeating-conic-gradient(var(--ink) 0 25%, var(--surface) 0 50%) 0 0 / 18px 18px;
+  border-left: 3px solid var(--ink); border-right: 3px solid var(--ink);
+}
+.pista-auto { position: absolute; bottom: 18px; transition: left .5s cubic-bezier(.3, 1.4, .5, 1); }
+.pista-turbo {
+  position: absolute; left: -54px; top: 10px; font-size: 48px;
+  animation: turbo .6s ease-out forwards;
+}
+@keyframes turbo { from { opacity: 1; transform: translateX(0) scale(1.2); } to { opacity: 0; transform: translateX(-50px) scale(.8); } }
+
+.turbo-fono {
+  position: absolute; right: 24px; bottom: 172px;
+  display: flex; gap: 10px; padding: 8px;
+  border: 2px dashed var(--ink); border-radius: 999px; background: var(--surface);
+  opacity: .85;
+}
+.boton-fono {
+  width: 64px; height: 64px; border-radius: 50%; border: var(--borde);
+  font-size: 32px; font-weight: 700; color: var(--ink);
+}
+.boton-fono.bien { background: #B9F0C9; }
+.boton-fono.error { background: #F3E1E6; }
+.nota-fono { font-size: 16px; opacity: .8; text-align: center; max-width: 440px; }
+.resumen-turbo { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 40px; }
+.resumen-turbo small { font-family: var(--fuente); font-size: 20px; }
 
 /* ---------- ajustes ---------- */
 
@@ -208,8 +295,8 @@ button:disabled { opacity: .4; cursor: default; }
   display: inline-grid; place-items: center;
   min-width: 64px; height: 56px; padding: 0 16px;
   border: var(--borde); border-radius: 999px;
-  background: var(--accent); color: var(--ink);
-  font-size: 40px; letter-spacing: .1em;
+  background: var(--surface); color: var(--ink);
+  font-family: var(--fuente); font-size: 40px; letter-spacing: .1em;
 }
 .consigna-grande { flex-direction: column; font-size: 34px; background: transparent; border: 0; box-shadow: none; padding: 0; }
 .consigna-grande .consigna-valor { min-width: 130px; height: 120px; font-size: 80px; border-radius: 32px; box-shadow: var(--sombra); rotate: -3deg; }

@@ -1,0 +1,15 @@
+{
+  "nota": "Consigna = verbo del juego + frase. {valor} se muestra al lado (letra, sílaba o número). Se muestra escrita, sin audio.",
+  "revisado": false,
+  "verbos": {
+    "basket": "Encesta",
+    "crash": "Revienta"
+  },
+  "consignas": {
+    "contiene-letra": "las que tienen la letra",
+    "empieza-letra": "las que empiezan con la letra",
+    "empieza-silaba": "las que empiezan con la sílaba",
+    "termina-letra": "las que terminan con la letra",
+    "num-silabas": "las que tienen esta cantidad de sílabas:"
+  }
+}

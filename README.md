@@ -1,6 +1,6 @@
 # Ruta Lectora
 
-Juegos terapéuticos para niños con dislexia (2° a 7° básico). Uso personal y clínico, no comercial.
+Juegos terapéuticos para niños con dislexia (1° a 6° básico). Uso personal y clínico, no comercial.
 Mascota: el **Kiltro**.
 
 - Funciona en el navegador (prioridad: **Mac e iPad**), se instala como app y funciona sin conexión.
@@ -24,14 +24,15 @@ registrar visitas.
 |---|---|
 | `docs/01-diseno.md` | Diseño general (Fase 1): capas, regla adaptativa, mundos, tablas de niveles |
 | `docs/02-fase-2-basket.md` | Fase 2: cómo funciona una sesión y Basket, y lo que se decidió |
+| `docs/03-crash-y-turbo.md` | Crash, Turbo, colores de p/b/d y 6° básico |
 | `docs/estilos-por-tramo.html` | Colores y letra de cada tramo |
 
 ## Fases
 
 1. ✅ Diseño
-2. ✅ Motor base + Basket, con selección por curso y presentación de palabras *(esperando aprobación de Fran)*
-3. Turbo (modo sesión y modo casa)
-4. Crash
+2. ✅ Motor base + Basket, con selección por curso y presentación de palabras
+3. ✅ Turbo (modo voz alta con marcación de la fono, y modo "elige la palabra") *(a probar por Fran)*
+4. ✅ Crash *(a probar por Fran)*
 5. Evaluación inicial de ubicación
 6. Panel de la fonoaudióloga, respaldo e informes PDF
 7. Comprensión y funciones ejecutivas en las mecánicas
@@ -60,11 +61,14 @@ o sea, la versión publicada en Vercel.)
 ```
 content/          Bancos de palabras (JSON editables). content/decodificacion/nivel-NN.json
 src/engine/       Regla adaptativa, carga de contenido, análisis de sílabas
-src/games/basket/ Juego Basket (escena Phaser + pantalla React)
+src/games/comun/  Lo compartido: reglas/consignas, velocidades, pantalla de juego, etiquetas
+src/games/basket/ Basket (escena Phaser)
+src/games/crash/  Crash (escena Phaser)
+src/games/turbo/  Turbo (React)
 src/sesion/       Elegir curso y contenido, presentación de palabras, sesión
-src/panel/        Ajustes (letra y sonido)
+src/panel/        Ajustes (letra, colores de p/b/d y sonido)
 src/data/         Guardado local (IndexedDB)
-src/ui/           Estilos por tramo, Kiltro, logo
+src/ui/           Estilos por tramo, colores de letras, Kiltro, logo
 mundos/           (Fase futura) paquetes de dibujos por mundo
 public/audio/     (Fase futura) grabaciones, un archivo por id de estímulo
 ```

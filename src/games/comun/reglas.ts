@@ -2,7 +2,7 @@
 // Criterio de decodificación: POR LETRA. Las palabras que podrían confundir
 // (ej. "chancho" para la letra c, "queso" para la u) no aparecen en esa ronda.
 
-import consignasJson from '../../../content/basket/consignas.json';
+import consignasJson from '../../../content/juegos/consignas.json';
 import type { Estimulo } from '../../engine/contenido';
 import { grafemas, sinTildes } from '../../engine/estructura';
 
@@ -27,8 +27,10 @@ const DIGRAFOS_AMBIGUOS: Record<string, string[]> = {
   u: ['qu', 'gu'],
 };
 
-export function textoConsigna(regla: Regla): string {
-  return consignasJson.consignas[regla.tipo];
+export type JuegoConConsigna = keyof typeof consignasJson.verbos;
+
+export function textoConsigna(regla: Regla, juego: JuegoConConsigna): string {
+  return `${consignasJson.verbos[juego]} ${consignasJson.consignas[regla.tipo]}`;
 }
 
 /** true = es objetivo, false = distractor, null = ambiguo (no se usa en esta ronda). */

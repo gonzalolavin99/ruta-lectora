@@ -7,12 +7,10 @@
 
 import Phaser from 'phaser';
 import { sonarSwish } from '../../audio/efectos';
-import type { ColoresCancha } from '../../ui/tema';
-import type { ItemCola } from './reglas';
-import { RACHA_RAYO, type ParametrosVelocidad } from './velocidad';
-
-export const ANCHO = 1280;
-export const ALTO = 860;
+import { crearEtiqueta } from '../comun/etiqueta';
+import type { ItemCola } from '../comun/reglas';
+import { ALTO, ANCHO, type ConfigEscena, type EscenaArcade, type Marcador } from '../comun/tipos';
+import { RACHA_RAYO, type ParametrosVelocidad } from '../comun/velocidad';
 
 const ARO = { y: 690, ancho: 210, alto: 40 };
 const TABLERO = { ancho: 300, alto: 170 };
@@ -21,31 +19,6 @@ const RADIO_BOLA = 58;
 const Y_INICIO = -90;
 const Y_FIN = ALTO + 90;
 const VELOCIDAD_TECLADO = 0.9; // px por ms con las flechas (opcional en el Mac)
-
-export interface Decision {
-  item: ItemCola;
-  atrapada: boolean;
-  correcta: boolean;
-  rayo: boolean;
-}
-
-export interface Marcador {
-  vidas: number;
-  encestadas: number;
-  estrellas: number;
-}
-
-export interface ConfigBasket {
-  colores: ColoresCancha;
-  familiaFuente: string;
-  sonido: boolean;
-  cola: ItemCola[];
-  vidas: number;
-  parametros: () => ParametrosVelocidad;
-  alDecidir: (d: Decision) => void;
-  alCambiarMarcador: (m: Marcador) => void;
-  alTerminar: (m: Marcador) => void;
-}
 
 interface Bola {
   item: ItemCola;
@@ -58,8 +31,8 @@ interface Bola {
 
 const color = (hex: string) => Phaser.Display.Color.HexStringToColor(hex).color;
 
-export class BasketScene extends Phaser.Scene {
-  private cfg: ConfigBasket;
+export class BasketScene extends Phaser.Scene implements EscenaArcade {
+  private cfg: ConfigEscena;
   private bolas: Bola[] = [];
   private indice = 0;
   private espera = 0;
@@ -77,7 +50,7 @@ export class BasketScene extends Phaser.Scene {
   private pista!: Phaser.GameObjects.Container;
   private flechas?: Phaser.Types.Input.Keyboard.CursorKeys;
 
-  constructor(cfg: ConfigBasket) {
+  constructor(cfg: ConfigEscena) {
     super('basket');
     this.cfg = cfg;
     this.vidas = cfg.vidas;
@@ -157,27 +130,15 @@ export class BasketScene extends Phaser.Scene {
     if (carril === this.ultimoCarril) carril = (carril + Phaser.Math.Between(1, CARRILES.length - 1)) % CARRILES.length;
     this.ultimoCarril = carril;
 
-    const c = this.cfg.colores;
+    const c = this.cfg.tema.cancha;
     const imagen = this.add.image(0, 0, 'bola');
-    const texto = this.add
-      .text(0, 0, item.estimulo.texto, {
-        fontFamily: this.cfg.familiaFuente,
-        fontSize: '46px',
-        fontStyle: 'bold',
-        color: c.etiquetaTexto,
-      })
-      .setOrigin(0.5)
-      .setLetterSpacing(3)
-      .setResolution(Math.min(3, window.devicePixelRatio || 1));
-    const anchoEtiqueta = Math.max(104, texto.width + 36);
-    const fondo = this.add.graphics();
-    fondo.fillStyle(color(c.etiquetaBorde), 1); // sombra tipo sticker
-    fondo.fillRoundedRect(-anchoEtiqueta / 2 + 5, -38 + 6, anchoEtiqueta, 76, 20);
-    fondo.fillStyle(color(c.etiqueta), 1);
-    fondo.fillRoundedRect(-anchoEtiqueta / 2, -38, anchoEtiqueta, 76, 20);
-    fondo.lineStyle(5, color(c.etiquetaBorde), 1);
-    fondo.strokeRoundedRect(-anchoEtiqueta / 2, -38, anchoEtiqueta, 76, 20);
-    const etiqueta = this.add.container(0, 0, [fondo, texto]);
+    const { contenedor: etiqueta } = crearEtiqueta(this, item.estimulo.texto, {
+      familiaFuente: this.cfg.familiaFuente,
+      colorearLetras: this.cfg.colorearLetras,
+      fondo: c.etiqueta,
+      borde: c.etiquetaBorde,
+      texto: c.etiquetaTexto,
+    });
     const contenedor = this.add.container(CARRILES[carril], Y_INICIO, [imagen, etiqueta]).setDepth(5);
 
     this.bolas.push({
@@ -205,7 +166,7 @@ export class BasketScene extends Phaser.Scene {
     } else if (!correcta) {
       this.racha = 0;
     }
-    this.cfg.alDecidir({ item: b.item, atrapada, correcta, rayo });
+    this.cfg.alDecidir({ item: b.item, elegida: atrapada, correcta, rayo });
 
     if (atrapada && correcta) this.encestar(b, rayo);
     else if (atrapada) this.rebotar(b);
@@ -281,7 +242,7 @@ export class BasketScene extends Phaser.Scene {
   }
 
   private marcador(): Marcador {
-    return { vidas: this.vidas, encestadas: this.encestadas, estrellas: this.estrellas };
+    return { vidas: this.vidas, puntos: this.encestadas, estrellas: this.estrellas };
   }
 
   private avisarMarcador() {
@@ -300,7 +261,7 @@ export class BasketScene extends Phaser.Scene {
   // ---------- dibujo ----------
 
   private crearTexturaBola() {
-    const c = this.cfg.colores;
+    const c = this.cfg.tema.cancha;
     const r = RADIO_BOLA;
     const g = this.make.graphics({ x: 0, y: 0 }, false);
     g.fillStyle(color(c.bola), 1);
@@ -320,7 +281,7 @@ export class BasketScene extends Phaser.Scene {
   }
 
   private dibujarCancha() {
-    const c = this.cfg.colores;
+    const c = this.cfg.tema.cancha;
     const g = this.add.graphics();
     const piso = 600;
 
@@ -344,7 +305,7 @@ export class BasketScene extends Phaser.Scene {
   }
 
   private crearAro() {
-    const c = this.cfg.colores;
+    const c = this.cfg.tema.cancha;
 
     // Atrás (por detrás de las pelotas): tablero y poste con ruedas.
     const atras = this.add.graphics();
@@ -384,7 +345,7 @@ export class BasketScene extends Phaser.Scene {
 
   /** Flechas ◀ ▶ junto al aro que muestran que se puede arrastrar. Se van al moverlo. */
   private crearPista() {
-    const c = this.cfg.colores;
+    const c = this.cfg.tema.cancha;
     const estilo = { fontSize: '64px', fontStyle: 'bold', color: c.etiquetaBorde };
     const izq = this.add.text(-TABLERO.ancho / 2 - 50, -40, '◀', estilo).setOrigin(0.5);
     const der = this.add.text(TABLERO.ancho / 2 + 50, -40, '▶', estilo).setOrigin(0.5);
