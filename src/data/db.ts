@@ -11,6 +11,7 @@ export interface Preferencias {
   sonido: boolean; // efectos al acertar (swish, pop)
   colorearLetras: boolean; // p roja, b azul, d verde
   velocidades: Record<string, number>; // clave juego-curso, ej. basket-3
+  velocidadesFijas: Record<string, boolean>; // true = la fono la fijó (no cambia sola)
 }
 
 interface Ajuste {
@@ -31,7 +32,7 @@ db.version(1).stores({
 // Versión 2: se eliminan perfiles, respuestas y rondas.
 db.version(2).stores({ perfiles: null, respuestas: null, rondas: null, ajustes: 'clave' });
 
-export const PREFERENCIAS_INICIALES: Preferencias = { fuente: 'andika', sonido: true, colorearLetras: true, velocidades: {} };
+export const PREFERENCIAS_INICIALES: Preferencias = { fuente: 'andika', sonido: true, colorearLetras: true, velocidades: {}, velocidadesFijas: {} };
 
 export async function leerPreferencias(): Promise<Preferencias> {
   const fila = await db.ajustes.get('preferencias');
@@ -45,9 +46,13 @@ export async function guardarPreferencias(cambios: Partial<Preferencias>): Promi
 
 export const claveVelocidad = (juego: string, curso: number) => `${juego}-${curso}`;
 
-export async function guardarVelocidad(juego: string, curso: number, velocidad: number): Promise<void> {
+export async function guardarVelocidad(juego: string, curso: number, velocidad: number, fija: boolean): Promise<void> {
   const actual = await leerPreferencias();
-  await guardarPreferencias({ velocidades: { ...actual.velocidades, [claveVelocidad(juego, curso)]: velocidad } });
+  const clave = claveVelocidad(juego, curso);
+  await guardarPreferencias({
+    velocidades: { ...actual.velocidades, [clave]: velocidad },
+    velocidadesFijas: { ...actual.velocidadesFijas, [clave]: fija },
+  });
 }
 
 /** Pide al navegador que no borre los datos cuando falte espacio (importante en Safari/iPad). */

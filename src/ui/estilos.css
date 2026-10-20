@@ -260,6 +260,66 @@ button:disabled { opacity: .4; cursor: default; }
 .resumen-turbo { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 40px; }
 .resumen-turbo small { font-family: var(--fuente); font-size: 20px; }
 
+/* ---------- disfraces, estrellas y niveles ---------- */
+
+.disfraces { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.disfraz {
+  width: 96px; height: 96px; padding: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border: var(--borde); border-radius: 22px; background: var(--bg); color: var(--ink);
+}
+.disfraz.elegido { background: var(--primary); box-shadow: var(--sombra-chica); transform: translateY(-3px); }
+.disfraz:disabled { opacity: .45; border-style: dashed; }
+.disfraz-emoji { font-size: 40px; line-height: 1; }
+.disfraz-nombre { font-size: 14px; font-weight: 700; }
+
+.estrellas-ronda { display: flex; gap: 6px; }
+.estrella { font-size: 44px; line-height: 1; color: var(--bg-puntos); -webkit-text-stroke: 2px var(--ink); }
+.estrellas-ronda .estrella.llena { color: #FFC93C; animation: estrella .45s ease-out both; }
+.nivel-barra .estrella { font-size: 28px; }
+.nivel-barra .estrella.llena { color: #FFC93C; }
+@keyframes estrella { from { transform: scale(0) rotate(-40deg); } 70% { transform: scale(1.3); } to { transform: none; } }
+.subio-nivel {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 24px; border: var(--borde); border-radius: 20px; background: var(--accent); color: var(--ink);
+  font-weight: 700; rotate: -2deg; box-shadow: var(--sombra-chica);
+}
+.subio-nivel strong { font-family: var(--fuente-titulo); font-size: 30px; }
+.nivel-sesion {
+  display: flex; align-items: center; gap: 12px; padding: 6px 18px;
+  border: var(--borde); border-radius: 999px; background: var(--surface); box-shadow: var(--sombra-chica);
+}
+.nivel-sesion strong { font-family: var(--fuente-titulo); font-size: 24px; }
+
+/* ---------- Turbo: escenarios por personaje ---------- */
+
+.pista-delfin {
+  background-color: #2F8FD0 !important;
+  background-image:
+    radial-gradient(circle at 20px 30px, rgba(255, 253, 247, .55) 6px, transparent 7px),
+    repeating-linear-gradient(90deg, rgba(255, 253, 247, .35) 0 30px, transparent 30px 60px) !important;
+  background-size: 90px 100%, 100% 6px !important;
+  background-position: 0 0, 0 92px !important;
+  background-repeat: repeat-x, no-repeat !important;
+}
+.pista-delfin .pista-meta { background: repeating-linear-gradient(0deg, #FF4F8B 0 18px, var(--surface) 18px 36px); }
+.pista-delfin .delfin { animation: nadar 1.2s ease-in-out infinite; }
+@keyframes nadar { 0%, 100% { transform: translateY(4px) rotate(2deg); } 50% { transform: translateY(-8px) rotate(-4deg); } }
+.escena-delfin .turbo-centro { background: linear-gradient(180deg, transparent 60%, rgba(76, 201, 240, .25)); }
+
+.pista-cohete {
+  background-color: #4B3FA8 !important;
+  background-image:
+    radial-gradient(circle, #FFFDF7 1.6px, transparent 2px),
+    radial-gradient(circle, #FFC93C 1.4px, transparent 2px) !important;
+  background-size: 46px 34px, 70px 52px !important;
+  background-position: 0 0, 20px 14px !important;
+  background-repeat: repeat !important;
+}
+.pista-cohete .pista-meta { background: radial-gradient(circle at 50% 50%, #FF8A3D 0 12px, #FFC93C 13px 15px, transparent 16px), repeating-conic-gradient(var(--ink) 0 25%, var(--surface) 0 50%) 0 0 / 18px 18px; }
+.pista-cohete .fuego { animation: fuego .2s steps(2) infinite; transform-origin: 30px 40px; }
+@keyframes fuego { to { transform: scaleX(1.3); } }
+
 /* ---------- ajustes ---------- */
 
 .ajustes { align-items: stretch; max-width: 560px; }
@@ -280,6 +340,7 @@ button:disabled { opacity: .4; cursor: default; }
   display: flex; align-items: center; gap: 14px;
   padding: max(10px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
 }
+.juego-area { flex: 1; min-height: 0; position: relative; display: flex; }
 .juego-lienzo { flex: 1; min-height: 0; position: relative; touch-action: none; -webkit-user-select: none; user-select: none; }
 .juego-lienzo canvas { display: block; }
 
@@ -313,6 +374,12 @@ button:disabled { opacity: .4; cursor: default; }
   font-family: var(--fuente-titulo); font-size: 34px; font-weight: 700; line-height: 1;
 }
 .boton-vel:active:not(:disabled) { transform: scale(.92); }
+.boton-auto {
+  min-width: 64px; height: 48px; padding: 0 12px; margin-left: 4px;
+  border: var(--borde); border-radius: 999px; background: var(--surface); color: var(--ink);
+  font-family: var(--fuente-titulo); font-size: 18px; font-weight: 700; opacity: .7;
+}
+.boton-auto.activo { background: var(--accent); opacity: 1; box-shadow: var(--sombra-chica); }
 .vel-valor { display: flex; flex-direction: column; align-items: center; min-width: 76px; line-height: 1; }
 .vel-valor span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
 .vel-valor strong { font-family: var(--fuente-titulo); font-size: 30px; }

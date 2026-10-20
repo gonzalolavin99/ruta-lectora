@@ -1,4 +1,7 @@
+import { ESTRELLAS_POR_NIVEL, nivelDe } from './progreso';
+
 interface Props {
+  estrellas: number;
   alElegir: (juego: Juego) => void;
   alVolver: () => void;
 }
@@ -12,11 +15,21 @@ const JUEGOS: { id: Juego; nombre: string; icono: string; como: string }[] = [
 ];
 
 // Después de leer las palabras, el niño elige su premio.
-export function SelectorJuego({ alElegir, alVolver }: Props) {
+export function SelectorJuego({ estrellas, alElegir, alVolver }: Props) {
+  const nivel = nivelDe(estrellas);
+  const enEsteNivel = estrellas % ESTRELLAS_POR_NIVEL;
   return (
     <div className="pantalla">
       <header className="cabecera">
         <button className="boton boton-secundario" onClick={alVolver}>← Volver</button>
+        <div className="nivel-sesion" aria-label={`Nivel ${nivel}, ${estrellas} estrellas`}>
+          <strong>Nivel {nivel}</strong>
+          <span className="nivel-barra" aria-hidden>
+            {Array.from({ length: ESTRELLAS_POR_NIVEL }, (_, i) => (
+              <span key={i} className={i < enEsteNivel ? 'estrella llena' : 'estrella'}>★</span>
+            ))}
+          </span>
+        </div>
       </header>
       <main className="centrada">
         <h1 className="titulo-grande">¿A qué jugamos?</h1>

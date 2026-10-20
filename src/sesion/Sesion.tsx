@@ -8,6 +8,7 @@ import { Crash } from '../games/crash/Crash';
 import { Turbo } from '../games/turbo/Turbo';
 import type { Tema } from '../ui/tema';
 import { Presentacion } from './Presentacion';
+import type { ProgresoSesion } from './progreso';
 import { SelectorJuego, type Juego } from './SelectorJuego';
 
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
   nivel: number;
   tema: Tema;
   preferencias: Preferencias;
+  progreso: ProgresoSesion;
+  alCambiarProgreso: (cambio: (p: ProgresoSesion) => ProgresoSesion) => void;
   alSalir: () => void;
 }
 
@@ -33,10 +36,11 @@ type Fase = { tipo: 'presentacion' } | { tipo: 'elegir' } | { tipo: 'jugar'; jue
 
 // Una sesión: primero se leen las palabras, después el niño elige a qué jugar,
 // y todos los juegos usan esas mismas palabras.
-export function Sesion({ curso, nivel, tema, preferencias, alSalir }: Props) {
+export function Sesion({ curso, nivel, tema, preferencias, progreso, alCambiarProgreso, alSalir }: Props) {
   const banco = obtenerBanco('decodificacion', nivel)!;
   const [ronda, setRonda] = useState(() => nuevaRonda(banco));
   const [fase, setFase] = useState<Fase>({ tipo: 'presentacion' });
+  const { estrellas, disfraces } = progreso;
 
   if (fase.tipo === 'presentacion') {
     return (
@@ -50,7 +54,13 @@ export function Sesion({ curso, nivel, tema, preferencias, alSalir }: Props) {
     );
   }
   if (fase.tipo === 'elegir') {
-    return <SelectorJuego alElegir={(juego) => setFase({ tipo: 'jugar', juego })} alVolver={() => setFase({ tipo: 'presentacion' })} />;
+    return (
+      <SelectorJuego
+        estrellas={estrellas}
+        alElegir={(juego) => setFase({ tipo: 'jugar', juego })}
+        alVolver={() => setFase({ tipo: 'presentacion' })}
+      />
+    );
   }
 
   const { juego } = fase;
@@ -62,7 +72,12 @@ export function Sesion({ curso, nivel, tema, preferencias, alSalir }: Props) {
     regla: ronda.regla,
     palabras: ronda.palabras,
     velocidadInicial: preferencias.velocidades[claveVelocidad(juego, curso)] ?? 1,
-    alCambiarVelocidad: (v) => void guardarVelocidad(juego, curso, v),
+    velocidadFijaInicial: preferencias.velocidadesFijas[claveVelocidad(juego, curso)] ?? false,
+    alCambiarVelocidad: (v, fija) => void guardarVelocidad(juego, curso, v, fija),
+    estrellasSesion: estrellas,
+    alSumarEstrellas: (n) => alCambiarProgreso((p) => ({ ...p, estrellas: p.estrellas + n })),
+    disfraz: disfraces[juego],
+    alElegirDisfraz: (id) => alCambiarProgreso((p) => ({ ...p, disfraces: { ...p.disfraces, [juego]: id } })),
     alOtroJuego: () => setFase({ tipo: 'elegir' }),
     alPalabrasNuevas: () => {
       setRonda(nuevaRonda(banco, ronda.regla));

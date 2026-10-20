@@ -1,19 +1,22 @@
 // Turbo: una carrera de lectura. Aparece una palabra por un momento, se tapa,
-// y el auto avanza. Dos modos:
+// y el personaje avanza. Personajes: auto (carretera), delfín (mar) y cohete (espacio).
+// Dos modos:
 //   - "Leo en voz alta": el niño lee y la fonoaudióloga marca ✓ o ✗
 //     (botones discretos abajo, o flechas → ← en el Mac).
 //   - "Elijo la palabra": al taparse, el niño elige entre 3 cuál vio.
-// El auto avanza siempre (nunca se castiga); acertar le da turbo ⚡.
+// El personaje avanza siempre (nunca se castiga); acertar le da turbo ⚡.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { registrarRespuesta, type EstadoAdaptativo } from '../../engine/adaptativo';
 import type { Estimulo } from '../../engine/contenido';
+import { DISFRACES, nivelDe, resultadoDeRonda, type ResultadoRonda } from '../../sesion/progreso';
 import { FAMILIA_FUENTE } from '../../ui/tema';
 import { PalabraColoreada } from '../../ui/PalabraColoreada';
 import { FinDeRonda, type PropsJuego } from '../comun/JuegoArcade';
-import { ControlVelocidad } from '../comun/ui';
+import { ControlVelocidad, SelectorDisfraz } from '../comun/ui';
 import { VELOCIDAD_MAX, VELOCIDAD_MIN } from '../comun/velocidad';
 import { barajar, exposicionMs, opcionesElegir } from './exposicion';
+import { Personaje } from './personajes';
 
 type Modo = 'voz' | 'elegir';
 type Fase = 'modo' | 'mostrando' | 'tapada' | 'revision' | 'fin';
@@ -24,9 +27,16 @@ interface Props extends Omit<PropsJuego, 'regla' | 'sonido'> {
 
 const TAMANO_BLOQUE = 10;
 
-export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicial, alCambiarVelocidad, alOtroJuego, alPalabrasNuevas, alSalir }: Props) {
-  const estadoRef = useRef<EstadoAdaptativo>({ nivel: velocidadInicial, fijado: false, refuerzo: false, bloque: [] });
-  const [velocidad, setVelocidad] = useState(velocidadInicial);
+export function Turbo(props: Props) {
+  const { fuente, colorearLetras, palabras, banco, alCambiarVelocidad } = props;
+  const estadoRef = useRef<EstadoAdaptativo>({
+    nivel: props.velocidadInicial,
+    fijado: props.velocidadFijaInicial,
+    refuerzo: false,
+    bloque: [],
+  });
+  const [velocidad, setVelocidad] = useState(props.velocidadInicial);
+  const [fija, setFija] = useState(props.velocidadFijaInicial);
   const [modo, setModo] = useState<Modo | null>(null);
   const [fase, setFase] = useState<Fase>('modo');
   const [cola, setCola] = useState<Estimulo[]>(() => barajar(palabras));
@@ -35,17 +45,22 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
   const [opciones, setOpciones] = useState<Estimulo[]>([]);
   const [elegida, setElegida] = useState<string | null>(null);
   const [turbo, setTurbo] = useState(0); // cambia en cada acierto para repetir la animación
+  const [resultado, setResultado] = useState<ResultadoRonda | null>(null);
   const inicioRef = useRef(0);
+  const aciertosRef = useRef(0);
   const [segundos, setSegundos] = useState(0);
 
   const palabra = cola[indice];
   const familia = FAMILIA_FUENTE[fuente];
+  const personaje = DISFRACES.turbo.find((d) => d.id === props.disfraz)?.id ?? 'auto';
+  const nivelSesion = nivelDe(props.estrellasSesion);
 
   const fijarVelocidad = useCallback(
     (estado: EstadoAdaptativo) => {
       estadoRef.current = estado;
       setVelocidad(estado.nivel);
-      alCambiarVelocidad(estado.nivel);
+      setFija(estado.fijado);
+      alCambiarVelocidad(estado.nivel, estado.fijado);
     },
     [alCambiarVelocidad],
   );
@@ -55,6 +70,8 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
     setCola(barajar(palabras));
     setIndice(0);
     setAciertos(0);
+    aciertosRef.current = 0;
+    setResultado(null);
     inicioRef.current = performance.now();
     setFase('mostrando');
   };
@@ -74,17 +91,21 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
     if (indice + 1 >= cola.length) {
       setSegundos(Math.round((performance.now() - inicioRef.current) / 1000));
       setIndice(cola.length);
+      const r = resultadoDeRonda(props.estrellasSesion, aciertosRef.current, cola.length);
+      setResultado(r);
+      props.alSumarEstrellas(r.estrellas);
       setFase('fin');
     } else {
       setIndice((i) => i + 1);
       setFase('mostrando');
     }
-  }, [indice, cola.length]);
+  }, [indice, cola.length, props]);
 
   const registrar = useCallback(
     (correcta: boolean) => {
       if (correcta) {
-        setAciertos((a) => a + 1);
+        aciertosRef.current++;
+        setAciertos(aciertosRef.current);
         setTurbo((t) => t + 1);
       }
       const anterior = estadoRef.current.nivel;
@@ -129,10 +150,12 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
     return () => window.removeEventListener('keydown', alTeclear);
   }, [marcar]);
 
+  // Tocar − o + deja la velocidad fija; "Auto" vuelve al ajuste automático.
   const cambiarVelocidad = (delta: number) => {
     const nivel = Math.min(VELOCIDAD_MAX, Math.max(VELOCIDAD_MIN, estadoRef.current.nivel + delta));
-    if (nivel !== estadoRef.current.nivel) fijarVelocidad({ ...estadoRef.current, nivel, refuerzo: false, bloque: [] });
+    fijarVelocidad({ ...estadoRef.current, nivel, fijado: true, refuerzo: false, bloque: [] });
   };
+  const alternarAuto = () => fijarVelocidad({ ...estadoRef.current, fijado: !estadoRef.current.fijado, refuerzo: false, bloque: [] });
 
   const progreso = cola.length ? Math.min(indice, cola.length) / cola.length : 0;
   const ppm = segundos > 0 ? Math.round((cola.length / segundos) * 60) : 0;
@@ -140,17 +163,17 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
   return (
     <div className="juego turbo">
       <header className="juego-barra">
-        <button className="boton-icono" onClick={alSalir} aria-label="Salir">✕</button>
+        <button className="boton-icono" onClick={props.alSalir} aria-label="Salir">✕</button>
         <div className="consigna">
           <span>{modo === 'elegir' ? 'Mira la palabra y elige cuál era' : modo === 'voz' ? 'Lee la palabra en voz alta' : 'Turbo'}</span>
         </div>
-        <ControlVelocidad velocidad={velocidad} alCambiar={cambiarVelocidad} />
+        <ControlVelocidad velocidad={velocidad} fija={fija} alCambiar={cambiarVelocidad} alAlternarAuto={alternarAuto} />
         <div className="marcador">
           <div className="encestadas" aria-label={`${aciertos} turbos`}>⚡ {aciertos}</div>
         </div>
       </header>
 
-      <main className="turbo-escena">
+      <main className={`turbo-escena escena-${personaje}`}>
         <div className="turbo-centro">
           {(fase === 'mostrando' || (fase === 'tapada' && modo === 'voz')) && palabra && (
             <div key={palabra.id + indice} className={fase === 'mostrando' ? 'turbo-palabra' : 'turbo-palabra tapada'} style={{ fontFamily: familia }}>
@@ -164,7 +187,9 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
                   elegida === null ? '' : o.texto === palabra.texto ? ' correcta' : o.texto === elegida ? ' elegida' : ' apagada';
                 return (
                   <button key={o.texto} className={`turbo-opcion${estado}`} style={{ fontFamily: familia }} onClick={() => elegir(o)}>
-                    <PalabraColoreada texto={o.texto} activo={colorearLetras} />
+                    <span>
+                      <PalabraColoreada texto={o.texto} activo={colorearLetras} />
+                    </span>
                   </button>
                 );
               })}
@@ -172,7 +197,7 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
           )}
         </div>
 
-        <Pista progreso={progreso} turbo={turbo} />
+        <Pista personaje={personaje} progreso={progreso} turbo={turbo} />
 
         {modo === 'voz' && (fase === 'mostrando' || fase === 'tapada') && (
           <div className="turbo-fono" aria-label="Botones de la fonoaudióloga">
@@ -180,62 +205,53 @@ export function Turbo({ fuente, colorearLetras, palabras, banco, velocidadInicia
             <button className="boton-fono bien" onClick={() => marcar(true)} aria-label="Leyó bien">✓</button>
           </div>
         )}
-      </main>
 
-      {fase === 'modo' && (
-        <div className="capa">
-          <div className="tarjeta tarjeta-consigna">
-            <h2>¿Cómo jugamos?</h2>
-            <button className="boton boton-grande" onClick={() => empezar('voz')}>🗣️ Leo en voz alta</button>
-            <button className="boton boton-grande boton-secundario" onClick={() => empezar('elegir')}>👆 Elijo la palabra</button>
-            <small className="nota-fono">En "voz alta", la fono marca ✓ / ✗ abajo a la derecha (o flechas → ← en el Mac).</small>
-          </div>
-        </div>
-      )}
-
-      {fase === 'fin' && (
-        <FinDeRonda
-          resumen={
-            <div className="resumen-turbo">
-              <div>🏁 <strong>{cola.length}</strong> palabras</div>
-              <div>⏱ <strong>{segundos}</strong> s · ⚡ <strong>{aciertos}</strong></div>
-              {modo === 'voz' && <small>≈ {ppm} palabras por minuto</small>}
+        {fase === 'modo' && (
+          <div className="capa">
+            <div className="tarjeta tarjeta-consigna">
+              <h2>¿Con quién corres?</h2>
+              <SelectorDisfraz disfraces={DISFRACES.turbo} nivel={nivelSesion} elegido={personaje} alElegir={props.alElegirDisfraz} />
+              <div className="fila">
+                <button className="boton boton-grande" onClick={() => empezar('voz')}>🗣️ Leo en voz alta</button>
+                <button className="boton boton-grande boton-secundario" onClick={() => empezar('elegir')}>👆 Elijo la palabra</button>
+              </div>
+              <small className="nota-fono">En "voz alta", la fono marca ✓ / ✗ abajo a la derecha (o flechas → ← en el Mac).</small>
             </div>
-          }
-          alOtraVez={() => empezar(modo ?? 'voz')}
-          alOtroJuego={alOtroJuego}
-          alPalabrasNuevas={alPalabrasNuevas}
-          alSalir={alSalir}
-        />
-      )}
+          </div>
+        )}
+
+        {fase === 'fin' && (
+          <FinDeRonda
+            resultado={resultado}
+            resumen={
+              <div className="resumen-turbo">
+                <div>🏁 <strong>{cola.length}</strong> palabras</div>
+                <div>⏱ <strong>{segundos}</strong> s · ⚡ <strong>{aciertos}</strong></div>
+                {modo === 'voz' && <small>≈ {ppm} palabras por minuto</small>}
+              </div>
+            }
+            alOtraVez={() => setFase('modo')}
+            alOtroJuego={props.alOtroJuego}
+            alPalabrasNuevas={props.alPalabrasNuevas}
+            alSalir={props.alSalir}
+          />
+        )}
+      </main>
     </div>
   );
 }
 
-/** Pista de carrera con el auto. */
-function Pista({ progreso, turbo }: { progreso: number; turbo: number }) {
+/** Pista de carrera: carretera, mar o espacio según el personaje. */
+function Pista({ personaje, progreso, turbo }: { personaje: string; progreso: number; turbo: number }) {
   return (
     <div className="pista">
-      <div className="pista-camino">
+      <div className={`pista-camino pista-${personaje}`}>
         <div className="pista-meta" aria-hidden />
-        <div className="pista-auto" style={{ left: `calc(${progreso} * (100% - 150px))` }}>
+        <div className="pista-auto" style={{ left: `calc(${progreso} * (100% - 160px))` }}>
           {turbo > 0 && <span key={turbo} className="pista-turbo" aria-hidden>⚡</span>}
-          <Auto />
+          <Personaje id={personaje} />
         </div>
       </div>
     </div>
-  );
-}
-
-function Auto() {
-  return (
-    <svg viewBox="0 0 140 80" width="140" height="80" aria-hidden>
-      <path d="M14 52 L24 30 Q30 20 44 20 L84 20 Q96 20 104 30 L118 44 Q132 46 132 56 L132 60 L10 60 Q8 54 14 52 Z" fill="var(--accent)" stroke="var(--ink)" strokeWidth="5" strokeLinejoin="round" />
-      <path d="M44 28 L80 28 Q88 28 94 36 L98 42 L36 42 Z" fill="var(--surface)" stroke="var(--ink)" strokeWidth="4" strokeLinejoin="round" />
-      <circle cx="38" cy="62" r="13" fill="var(--ink)" />
-      <circle cx="38" cy="62" r="5" fill="var(--surface)" />
-      <circle cx="106" cy="62" r="13" fill="var(--ink)" />
-      <circle cx="106" cy="62" r="5" fill="var(--surface)" />
-    </svg>
   );
 }

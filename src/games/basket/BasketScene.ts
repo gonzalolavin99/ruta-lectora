@@ -131,7 +131,11 @@ export class BasketScene extends Phaser.Scene implements EscenaArcade {
     this.ultimoCarril = carril;
 
     const c = this.cfg.tema.cancha;
-    const imagen = this.add.image(0, 0, 'bola');
+    const disfraz = this.cfg.disfraz();
+    const imagen =
+      disfraz.id === 'basquet'
+        ? this.add.image(0, 0, 'bola')
+        : this.add.text(0, 0, disfraz.emoji, { fontSize: '112px' }).setOrigin(0.5);
     const { contenedor: etiqueta } = crearEtiqueta(this, item.estimulo.texto, {
       familiaFuente: this.cfg.familiaFuente,
       colorearLetras: this.cfg.colorearLetras,

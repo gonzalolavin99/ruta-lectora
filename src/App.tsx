@@ -4,6 +4,7 @@ import { leerPreferencias, PREFERENCIAS_INICIALES } from './data/db';
 import { Ajustes } from './panel/Ajustes';
 import { SelectorContenido } from './sesion/SelectorContenido';
 import { SelectorCurso } from './sesion/SelectorCurso';
+import { progresoInicial } from './sesion/progreso';
 import { Sesion } from './sesion/Sesion';
 import { TEMAS, tramoDeCurso, variablesCss } from './ui/tema';
 
@@ -12,6 +13,8 @@ type Pantalla = { tipo: 'cursos' } | { tipo: 'contenidos'; curso: number } | { t
 export function App() {
   const [pantalla, setPantalla] = useState<Pantalla>({ tipo: 'cursos' });
   const [ajustesAbiertos, setAjustesAbiertos] = useState(false);
+  // Estrellas y niveles del niño en esta sesión: se reinician al volver a la lista de cursos.
+  const [progreso, setProgreso] = useState(progresoInicial);
   const preferencias = useLiveQuery(leerPreferencias, []) ?? PREFERENCIAS_INICIALES;
 
   let contenido;
@@ -26,7 +29,10 @@ export function App() {
             curso={pantalla.curso}
             tema={tema}
             alElegir={(nivel) => setPantalla({ tipo: 'sesion', curso: pantalla.curso, nivel })}
-            alVolver={() => setPantalla({ tipo: 'cursos' })}
+            alVolver={() => {
+              setProgreso(progresoInicial());
+              setPantalla({ tipo: 'cursos' });
+            }}
           />
         )}
         {pantalla.tipo === 'sesion' && (
@@ -35,6 +41,8 @@ export function App() {
             nivel={pantalla.nivel}
             tema={tema}
             preferencias={preferencias}
+            progreso={progreso}
+            alCambiarProgreso={setProgreso}
             alSalir={() => setPantalla({ tipo: 'contenidos', curso: pantalla.curso })}
           />
         )}

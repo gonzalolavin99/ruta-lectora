@@ -98,7 +98,11 @@ export class CrashScene extends Phaser.Scene implements EscenaArcade {
     this.ultimoCarril = carril;
 
     const c = this.cfg.tema.cancha;
-    const burbuja = this.add.image(0, 0, 'burbuja');
+    const disfraz = this.cfg.disfraz();
+    const burbuja =
+      disfraz.id === 'burbuja'
+        ? this.add.image(0, 0, 'burbuja')
+        : this.add.text(0, -64, disfraz.emoji, { fontSize: '130px' }).setOrigin(0.5); // la palabra cuelga abajo
     const { contenedor: etiqueta, ancho } = crearEtiqueta(this, item.estimulo.texto, {
       familiaFuente: this.cfg.familiaFuente,
       colorearLetras: this.cfg.colorearLetras,
@@ -170,7 +174,7 @@ export class CrashScene extends Phaser.Scene implements EscenaArcade {
   private fallar(b: Burbuja) {
     this.perderVida();
     b.contenedor.list.forEach((o) => {
-      if (o instanceof Phaser.GameObjects.Image) o.setTint(0x9a96aa);
+      if (o instanceof Phaser.GameObjects.Image || o instanceof Phaser.GameObjects.Text) o.setTint(0x9a96aa);
     });
     this.tweens.add({
       targets: b.contenedor,

@@ -1,19 +1,77 @@
 // Piezas de interfaz que comparten los juegos.
 
 import { PalabraColoreada } from '../../ui/PalabraColoreada';
+import type { Disfraz } from '../../sesion/progreso';
 import { textoConsigna, type JuegoConConsigna, type Regla } from './reglas';
 import { VELOCIDAD_MAX, VELOCIDAD_MIN } from './velocidad';
 
-/** Control "− Velocidad +" para que la fonoaudióloga ajuste ahí mismo. */
-export function ControlVelocidad({ velocidad, alCambiar }: { velocidad: number; alCambiar: (delta: number) => void }) {
+/**
+ * Control "− Velocidad +" para que la fonoaudióloga ajuste ahí mismo.
+ * Al tocar − o + la velocidad queda FIJA (🔒) y ya no cambia sola;
+ * el botón "Auto" vuelve a dejar que la regla 80/60 la ajuste.
+ */
+export function ControlVelocidad({
+  velocidad,
+  fija,
+  alCambiar,
+  alAlternarAuto,
+}: {
+  velocidad: number;
+  fija: boolean;
+  alCambiar: (delta: number) => void;
+  alAlternarAuto: () => void;
+}) {
   return (
     <div className="control-velocidad">
       <button className="boton-vel" onClick={() => alCambiar(-1)} disabled={velocidad <= VELOCIDAD_MIN} aria-label="Más lento">−</button>
       <div className="vel-valor" aria-live="polite">
-        <span>Velocidad</span>
+        <span>{fija ? '🔒 Fija' : 'Velocidad'}</span>
         <strong>{velocidad}</strong>
       </div>
       <button className="boton-vel" onClick={() => alCambiar(1)} disabled={velocidad >= VELOCIDAD_MAX} aria-label="Más rápido">+</button>
+      <button
+        className={fija ? 'boton-auto' : 'boton-auto activo'}
+        onClick={alAlternarAuto}
+        aria-pressed={!fija}
+        title={fija ? 'Volver a ajuste automático' : 'La velocidad se ajusta sola según los aciertos'}
+      >
+        Auto
+      </button>
+    </div>
+  );
+}
+
+/** Fila de disfraces para elegir; los que faltan por desbloquear muestran el nivel. */
+export function SelectorDisfraz({
+  disfraces,
+  nivel,
+  elegido,
+  alElegir,
+}: {
+  disfraces: Disfraz[];
+  nivel: number;
+  elegido: string;
+  alElegir: (id: string) => void;
+}) {
+  return (
+    <div className="disfraces" role="radiogroup" aria-label="Elige tu personaje">
+      {disfraces.map((d) => {
+        const bloqueado = d.nivel > nivel;
+        return (
+          <button
+            key={d.id}
+            className={d.id === elegido ? 'disfraz elegido' : 'disfraz'}
+            onClick={() => !bloqueado && alElegir(d.id)}
+            disabled={bloqueado}
+            role="radio"
+            aria-checked={d.id === elegido}
+            aria-label={bloqueado ? `${d.nombre}, se desbloquea en el nivel ${d.nivel}` : d.nombre}
+          >
+            <span className="disfraz-emoji" aria-hidden>{bloqueado ? '🔒' : d.emoji}</span>
+            <span className="disfraz-nombre">{bloqueado ? `Nivel ${d.nivel}` : d.nombre}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

@@ -2,6 +2,7 @@
 // movimiento, una consigna, 3 vidas y velocidad ajustable.
 
 import type Phaser from 'phaser';
+import type { Disfraz } from '../../sesion/progreso';
 import type { Tema } from '../../ui/tema';
 import type { ItemCola } from './reglas';
 import type { ParametrosVelocidad } from './velocidad';
@@ -26,6 +27,7 @@ export interface ConfigEscena {
   sonido: boolean;
   cola: ItemCola[];
   vidas: number;
+  disfraz: () => Disfraz; // se lee al soltar cada estímulo (se puede cambiar antes de empezar)
   parametros: () => ParametrosVelocidad;
   alDecidir: (d: Decision) => void;
   alCambiarMarcador: (m: Marcador) => void;

@@ -25,6 +25,7 @@ registrar visitas.
 | `docs/01-diseno.md` | Diseño general (Fase 1): capas, regla adaptativa, mundos, tablas de niveles |
 | `docs/02-fase-2-basket.md` | Fase 2: cómo funciona una sesión y Basket, y lo que se decidió |
 | `docs/03-crash-y-turbo.md` | Crash, Turbo, colores de p/b/d y 6° básico |
+| `docs/04-velocidad-niveles-personajes.md` | Velocidad fija/Auto, niveles de la sesión, delfín y cohete, ideas |
 | `docs/estilos-por-tramo.html` | Colores y letra de cada tramo |
 
 ## Fases
