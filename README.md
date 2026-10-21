@@ -27,6 +27,7 @@ registrar visitas.
 | `docs/03-crash-y-turbo.md` | Crash, Turbo, colores de p/b/d y 6° básico |
 | `docs/04-velocidad-niveles-personajes.md` | Velocidad fija/Auto, niveles de la sesión, delfín y cohete, ideas |
 | `docs/05-memoria-y-medallas.md` | Juego Memoria y medallas de la sesión |
+| `docs/06-turbo-carrera.md` | Turbo como carrera contra un rival, con podio |
 | `docs/estilos-por-tramo.html` | Colores y letra de cada tramo |
 
 ## Fases

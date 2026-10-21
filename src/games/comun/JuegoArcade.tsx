@@ -281,24 +281,26 @@ export function FinDeRonda(p: {
   const r = p.resultado;
   return (
     <div className="capa">
-      <div className="tarjeta">
-        <h2>Fin de la ronda</h2>
-        {r && (
-          <div className="estrellas-ronda" aria-label={`${r.estrellas} de 3 estrellas`}>
-            {[1, 2, 3].map((n) => (
-              <span key={n} className={n <= r.estrellas ? 'estrella llena' : 'estrella'} style={{ animationDelay: `${n * 0.15}s` }}>★</span>
-            ))}
-          </div>
-        )}
-        <div className="resumen">{p.resumen}</div>
-        {r && r.nivel > r.nivelAntes && (
-          <div className="subio-nivel">
-            <strong>¡Nivel {r.nivel}!</strong>
-            {r.desbloqueos.length > 0 && <span>Nuevo: {r.desbloqueos.map((d) => `${d.emoji} ${d.nombre}`).join(' · ')}</span>}
-          </div>
-        )}
-        <button className="boton boton-grande" onClick={p.alOtraVez}>Jugar otra vez</button>
-        <div className="fila">
+      <div className="tarjeta tarjeta-fin">
+        <div className="fin-columna">
+          <h2>Fin de la ronda</h2>
+          {r && (
+            <div className="estrellas-ronda" aria-label={`${r.estrellas} de 3 estrellas`}>
+              {[1, 2, 3].map((n) => (
+                <span key={n} className={n <= r.estrellas ? 'estrella llena' : 'estrella'} style={{ animationDelay: `${n * 0.15}s` }}>★</span>
+              ))}
+            </div>
+          )}
+          <div className="resumen">{p.resumen}</div>
+        </div>
+        <div className="fin-columna">
+          {r && r.nivel > r.nivelAntes && (
+            <div className="subio-nivel">
+              <strong>¡Nivel {r.nivel}!</strong>
+              {r.desbloqueos.length > 0 && <span>Nuevo: {r.desbloqueos.map((d) => `${d.emoji} ${d.nombre}`).join(' · ')}</span>}
+            </div>
+          )}
+          <button className="boton boton-grande" onClick={p.alOtraVez}>Jugar otra vez</button>
           <button className="boton boton-secundario" onClick={p.alOtroJuego}>Otro juego</button>
           <button className="boton boton-secundario" onClick={p.alPalabrasNuevas}>Palabras nuevas</button>
           <button className="boton boton-secundario" onClick={p.alSalir}>Salir</button>
