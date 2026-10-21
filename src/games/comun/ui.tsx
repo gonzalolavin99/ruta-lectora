@@ -15,20 +15,26 @@ export function ControlVelocidad({
   fija,
   alCambiar,
   alAlternarAuto,
+  etiqueta = 'Velocidad',
+  min = VELOCIDAD_MIN,
+  max = VELOCIDAD_MAX,
 }: {
   velocidad: number;
   fija: boolean;
   alCambiar: (delta: number) => void;
   alAlternarAuto: () => void;
+  etiqueta?: string;
+  min?: number;
+  max?: number;
 }) {
   return (
     <div className="control-velocidad">
-      <button className="boton-vel" onClick={() => alCambiar(-1)} disabled={velocidad <= VELOCIDAD_MIN} aria-label="Más lento">−</button>
+      <button className="boton-vel" onClick={() => alCambiar(-1)} disabled={velocidad <= min} aria-label={`Menos (${etiqueta})`}>−</button>
       <div className="vel-valor" aria-live="polite">
-        <span>{fija ? '🔒 Fija' : 'Velocidad'}</span>
+        <span>{fija ? `🔒 ${etiqueta}` : etiqueta}</span>
         <strong>{velocidad}</strong>
       </div>
-      <button className="boton-vel" onClick={() => alCambiar(1)} disabled={velocidad >= VELOCIDAD_MAX} aria-label="Más rápido">+</button>
+      <button className="boton-vel" onClick={() => alCambiar(1)} disabled={velocidad >= max} aria-label={`Más (${etiqueta})`}>+</button>
       <button
         className={fija ? 'boton-auto' : 'boton-auto activo'}
         onClick={alAlternarAuto}

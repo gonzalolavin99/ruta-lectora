@@ -5,7 +5,9 @@
 
 export const ESTRELLAS_POR_NIVEL = 3;
 
-export type JuegoId = 'basket' | 'crash' | 'turbo';
+export type JuegoId = 'basket' | 'crash' | 'turbo' | 'memoria';
+
+export const JUEGOS_IDS: JuegoId[] = ['basket', 'crash', 'turbo', 'memoria'];
 
 export interface Disfraz {
   id: string;
@@ -31,16 +33,76 @@ export const DISFRACES: Record<JuegoId, Disfraz[]> = {
     { id: 'delfin', nombre: 'Delfín', emoji: '🐬', nivel: 1 },
     { id: 'cohete', nombre: 'Cohete', emoji: '🚀', nivel: 3 },
   ],
+  // Memoria: el dibujo del reverso de las cartas.
+  memoria: [
+    { id: 'estrellas', nombre: 'Estrellas', emoji: '⭐', nivel: 1 },
+    { id: 'gatos', nombre: 'Gatos', emoji: '🐱', nivel: 2 },
+    { id: 'dinos', nombre: 'Dinos', emoji: '🦖', nivel: 3 },
+    { id: 'marcianos', nombre: 'Marcianos', emoji: '👾', nivel: 4 },
+  ],
 };
+
+// ---------- medallas de la sesión ----------
+
+export interface Medalla {
+  id: string;
+  nombre: string;
+  emoji: string;
+  descripcion: string;
+}
+
+export const MEDALLAS: Medalla[] = [
+  { id: 'todo-terreno', nombre: 'Todo terreno', emoji: '🏅', descripcion: 'Jugó los 4 juegos' },
+  { id: 'racha', nombre: 'En racha', emoji: '🔥', descripcion: '3 rondas seguidas con 3 estrellas' },
+  { id: 'lector', nombre: 'Gran lector', emoji: '📚', descripcion: 'Leyó 3 listas de palabras' },
+];
 
 /** Progreso de la sesión con un niño: se reinicia al volver a elegir curso. */
 export interface ProgresoSesion {
   estrellas: number;
   disfraces: Record<JuegoId, string>; // disfraz elegido en cada juego
+  juegosJugados: JuegoId[];
+  racha: number; // rondas seguidas con 3 estrellas
+  listasLeidas: number;
+  medallas: string[]; // ids, en el orden en que se ganaron
 }
 
 export function progresoInicial(): ProgresoSesion {
-  return { estrellas: 0, disfraces: { basket: 'basquet', crash: 'burbuja', turbo: 'auto' } };
+  return {
+    estrellas: 0,
+    disfraces: { basket: 'basquet', crash: 'burbuja', turbo: 'auto', memoria: 'estrellas' },
+    juegosJugados: [],
+    racha: 0,
+    listasLeidas: 0,
+    medallas: [],
+  };
+}
+
+function conMedallas(p: ProgresoSesion): ProgresoSesion {
+  const ganadas = new Set(p.medallas);
+  const nuevas: string[] = [];
+  const ganar = (id: string, condicion: boolean) => {
+    if (condicion && !ganadas.has(id)) nuevas.push(id);
+  };
+  ganar('todo-terreno', JUEGOS_IDS.every((j) => p.juegosJugados.includes(j)));
+  ganar('racha', p.racha >= 3);
+  ganar('lector', p.listasLeidas >= 3);
+  return nuevas.length ? { ...p, medallas: [...p.medallas, ...nuevas] } : p;
+}
+
+/** Al terminar una ronda de cualquier juego. */
+export function registrarRonda(p: ProgresoSesion, juego: JuegoId, estrellas: number): ProgresoSesion {
+  return conMedallas({
+    ...p,
+    estrellas: p.estrellas + estrellas,
+    juegosJugados: p.juegosJugados.includes(juego) ? p.juegosJugados : [...p.juegosJugados, juego],
+    racha: estrellas === 3 ? p.racha + 1 : 0,
+  });
+}
+
+/** Al terminar de leer una lista de palabras (la presentación). */
+export function registrarLectura(p: ProgresoSesion): ProgresoSesion {
+  return conMedallas({ ...p, listasLeidas: p.listasLeidas + 1 });
 }
 
 /** Estrellas de una ronda según el porcentaje de aciertos. Siempre al menos 1. */

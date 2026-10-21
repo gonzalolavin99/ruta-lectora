@@ -26,6 +26,7 @@ registrar visitas.
 | `docs/02-fase-2-basket.md` | Fase 2: cómo funciona una sesión y Basket, y lo que se decidió |
 | `docs/03-crash-y-turbo.md` | Crash, Turbo, colores de p/b/d y 6° básico |
 | `docs/04-velocidad-niveles-personajes.md` | Velocidad fija/Auto, niveles de la sesión, delfín y cohete, ideas |
+| `docs/05-memoria-y-medallas.md` | Juego Memoria y medallas de la sesión |
 | `docs/estilos-por-tramo.html` | Colores y letra de cada tramo |
 
 ## Fases
@@ -66,6 +67,7 @@ src/games/comun/  Lo compartido: reglas/consignas, velocidades, pantalla de jueg
 src/games/basket/ Basket (escena Phaser)
 src/games/crash/  Crash (escena Phaser)
 src/games/turbo/  Turbo (React)
+src/games/memoria/ Memoria (React)
 src/sesion/       Elegir curso y contenido, presentación de palabras, sesión
 src/panel/        Ajustes (letra, colores de p/b/d y sonido)
 src/data/         Guardado local (IndexedDB)
