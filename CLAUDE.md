@@ -30,7 +30,7 @@ Los 4 juegos usan las mismas 12 palabras.
 |---|---|---|
 | Basket (Phaser) | Caen pelotas con palabras; el niño **arrastra el aro** para atrapar solo las que cumplen la consigna ("Encesta las que tienen la letra o"). 3 vidas: pierde al atrapar una incorrecta o dejar pasar una correcta | Velocidad 1–10 |
 | Crash (Phaser) | Suben burbujas; **tocar** para reventar solo las correctas. Mismas vidas | Velocidad 1–10 |
-| Turbo (React) | Carrera vs. rival: palabra se muestra y se tapa; ✓ avanza el niño, ✗ avanza el rival; meta a 10 pasos → podio con copa. Modo "voz alta" (la fono marca ✓/✗, o flechas → ←) o "elige la palabra" (3 opciones parecidas). Personajes: auto, delfín (mar), cohete (espacio) | Tiempo de exposición (velocidad 1–10) |
+| Turbo (React) | Carrera vs. rival: palabra se muestra y se tapa; ambos avanzan con cada palabra (✓ niño +1 y rival +½, ✗ rival +1 y niño +¼, `avance.ts`); paisaje en movimiento; meta a 10 pasos → celebración en la pista → podio con copa. Modo "voz alta" (la fono marca ✓/✗, o flechas → ←) o "elige la palabra" (3 opciones parecidas). Personajes: auto, delfín (mar), cohete (espacio) | Tiempo de exposición (velocidad 1–10) |
 | Memoria (React) | 2–5 palabras numeradas se tapan; tocar en el mismo orden entre distractoras. 6 intentos | Cantidad de palabras 2–5 |
 
 Comunes:
@@ -56,7 +56,7 @@ src/games/comun/   Reglas/consignas, velocidades, JuegoArcade (pantalla de Baske
 src/games/basket|crash/  Escenas Phaser       src/games/turbo|memoria/  React
 src/sesion/        Selectores, presentación, Sesion, progreso (niveles, disfraces, medallas)
 src/panel/Ajustes.tsx    src/data/ (db.ts IndexedDB, actualizacion.ts PWA)    src/ui/ (tema, estilos.css, letras)
-docs/              Un documento por entrega (01 diseño … 06 Turbo carrera)
+docs/              Un documento por entrega (01 diseño … 07 Turbo en movimiento)
 ```
 
 Comandos (Windows, PowerShell bloquea `npm`: usar `npm.cmd`, o doble clic en `iniciar.cmd`):

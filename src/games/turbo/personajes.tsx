@@ -26,10 +26,13 @@ function Auto({ color }: { color: string }) {
       <circle cx="96" cy="28" r="10" fill="var(--surface)" stroke="var(--ink)" strokeWidth="4" />
       <path d="M96 22 Q104 24 105 30 L96 30 Z" fill="#6CC4F0" />
       {/* ruedas */}
-      <circle cx="42" cy="60" r="15" fill="var(--ink)" />
-      <circle cx="42" cy="60" r="6" fill="var(--surface)" />
-      <circle cx="126" cy="60" r="15" fill="var(--ink)" />
-      <circle cx="126" cy="60" r="6" fill="var(--surface)" />
+      {[42, 126].map((x) => (
+        <g key={x} className="rueda">
+          <circle cx={x} cy="60" r="15" fill="var(--ink)" />
+          <circle cx={x} cy="60" r="6" fill="var(--surface)" />
+          <path d={`M${x} 47 L${x} 52 M${x} 68 L${x} 73 M${x - 13} 60 L${x - 8} 60 M${x + 8} 60 L${x + 13} 60`} stroke="var(--surface)" strokeWidth="3" strokeLinecap="round" />
+        </g>
+      ))}
     </svg>
   );
 }

@@ -34,6 +34,7 @@ versiones nuevas sola al abrirla, al volver a ella y cada hora.
 | `docs/04-velocidad-niveles-personajes.md` | Velocidad fija/Auto, niveles de la sesión, delfín y cohete, ideas |
 | `docs/05-memoria-y-medallas.md` | Juego Memoria y medallas de la sesión |
 | `docs/06-turbo-carrera.md` | Turbo como carrera contra un rival, con podio |
+| `docs/07-turbo-en-movimiento.md` | Turbo: los dos corredores y el paisaje en movimiento, celebración al ganar |
 | `docs/estilos-por-tramo.html` | Colores y letra de cada tramo |
 
 ## Fases
