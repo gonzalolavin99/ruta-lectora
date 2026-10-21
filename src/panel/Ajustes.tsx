@@ -1,3 +1,4 @@
+import { forzarActualizacion, VERSION } from '../data/actualizacion';
 import { guardarPreferencias, type Preferencias } from '../data/db';
 import { COLORES_LETRA } from '../ui/letras';
 import { FAMILIA_FUENTE } from '../ui/tema';
@@ -41,6 +42,10 @@ export function Ajustes({ preferencias, alCerrar }: { preferencias: Preferencias
         </label>
         <small>En iPad no suena si está en modo silencio.</small>
         <button className="boton" onClick={alCerrar}>Listo</button>
+        <div className="version">
+          <small>Versión {VERSION}</small>
+          <button className="boton boton-secundario" onClick={() => void forzarActualizacion()}>Actualizar la app</button>
+        </div>
       </div>
     </div>
   );

@@ -18,10 +18,16 @@ Después de abrirla una vez, funciona sin internet.
 La dirección no aparece en Google (está marcada como no indexable). No se activó Vercel Analytics, para no
 registrar visitas.
 
+## Si la app no se actualiza en el iPad
+
+En la app: **⚙️ Ajustes → Actualizar la app** (abajo se ve la fecha de la versión). La app también busca
+versiones nuevas sola al abrirla, al volver a ella y cada hora.
+
 ## Documentos
 
 | Archivo | Qué contiene |
 |---|---|
+| `CLAUDE.md` | **Resumen para retomar el proyecto** (estado, reglas, trampas técnicas) |
 | `docs/01-diseno.md` | Diseño general (Fase 1): capas, regla adaptativa, mundos, tablas de niveles |
 | `docs/02-fase-2-basket.md` | Fase 2: cómo funciona una sesión y Basket, y lo que se decidió |
 | `docs/03-crash-y-turbo.md` | Crash, Turbo, colores de p/b/d y 6° básico |

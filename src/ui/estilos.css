@@ -545,3 +545,6 @@ button:disabled { opacity: .4; cursor: default; }
   }
   .girar-icono { font-size: 104px; }
 }
+
+.version { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; border-top: 3px dashed var(--bg-puntos); }
+.version small { margin-top: 0 !important; }

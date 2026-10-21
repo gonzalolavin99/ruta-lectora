@@ -2,11 +2,16 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
+const ahora = new Date();
+const VERSION = ahora.toLocaleString('es-CL', { timeZone: 'America/Santiago', dateStyle: 'short', timeStyle: 'short' });
+
 export default defineConfig({
+  define: { __VERSION__: JSON.stringify(VERSION) },
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: false, // se registra en src/data/actualizacion.ts
       includeAssets: ['favicon.svg', 'apple-touch-icon-180x180.png'],
       manifest: {
         name: 'Ruta Lectora',

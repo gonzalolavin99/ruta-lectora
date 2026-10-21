@@ -9,9 +9,11 @@ import './ui/estilos.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import { iniciarActualizaciones } from './data/actualizacion';
 import { pedirAlmacenamientoPersistente } from './data/db';
 
 void pedirAlmacenamientoPersistente();
+iniciarActualizaciones();
 
 // Safari en iPad: evitar zoom con dos dedos o doble toque dentro de la app.
 document.addEventListener('gesturestart', (e) => e.preventDefault());
